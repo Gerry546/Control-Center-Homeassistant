@@ -1,0 +1,14 @@
+type: grid
+title: Bedrooms
+view_layout:
+  grid-area: bedroom
+columns: 1
+cards:
+  - type: grid
+    columns: 2
+    cards:
+      - type: custom:button-card
+        entity: light.master_bedroom
+        template:
+          - light
+          - icon_hang

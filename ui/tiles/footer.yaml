@@ -1,0 +1,14 @@
+type: horizontal-stack
+view_layout:
+  grid-area: footer
+cards:
+  - type: custom:button-card
+    name: >
+      <ha-icon icon="mdi:weather-partly-cloudy"></ha-icon> Weerbericht
+    tap_action: !include ../overlays/overlay_weather.yaml
+    template: footer
+  - type: custom:button-card
+    name: >
+      <ha-icon icon="mdi:power"></ha-icon> Power
+    tap_action: !include ../overlays/overlay_power.yaml
+    template: footer

@@ -1,0 +1,31 @@
+type: grid
+title: Home
+view_layout:
+  grid-area: home
+columns: 1
+cards:
+  - type: grid
+    columns: 2
+    cards:
+      - type: custom:button-card
+        entity: person.tom_geelen
+        name: Tom
+        triggers_update:
+          - sensor.tom_last_changed
+        double_tap_action: !include ../overlays/overlay_tom.yaml
+        variables:
+          retain: sensor.tom_last_changed
+        template:
+          - person
+          - circle
+      - type: custom:button-card
+        entity: person.willeke
+        name: Willeke
+        triggers_update:
+          - sensor.willeke_last_changed
+        double_tap_action: !include ../overlays/overlay_willeke.yaml
+        variables:
+          retain: sensor.willeke_last_changed
+        template:
+          - person
+          - circle

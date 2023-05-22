@@ -1,0 +1,19 @@
+type: grid
+columns: 1
+title: Work Room
+view_layout:
+  grid-area: work
+cards:
+  - type: grid
+    columns: 2
+    cards:
+      - type: custom:button-card
+        entity: light.study_room_light
+        template:
+          - light
+          - icon_hang
+      - type: custom:button-card
+        entity: light.hobby_room
+        template:
+          - light
+          - icon_hang

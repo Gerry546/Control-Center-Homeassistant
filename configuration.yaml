@@ -18,3 +18,22 @@ scene: !include scenes.yaml
 http:
   use_x_forwarded_for: true
   trusted_proxies: 192.168.89.254
+
+# Add custom lovelace frontend
+lovelace:
+  mode: yaml
+  resources:
+    - url: /www/community/lovelace-layout-card/layout-card.js
+      type: module
+    - url: /hacsfiles/lovelace-card-mod/card-mod.js
+      type: module
+  dashboards:
+    lovelace-yaml:
+      mode: yaml
+      title: Dashboard
+      icon: mdi:home
+      show_in_sidebar: true
+      filename: ui/lovelace.yaml
+
+homeassistant:
+  packages: !include_dir_named include

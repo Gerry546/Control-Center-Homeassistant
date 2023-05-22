@@ -1,0 +1,50 @@
+title: Main View
+type: custom:grid-layout
+path: main_view
+layout:
+  # Default layout
+  margin: 0
+  grid-gap: var(--custom-layout-card-padding)
+  grid-template-columns: repeat(4, 1fr) 0
+  grid-template-rows: 0 repeat(2, fit-content(100%)) 0fr
+  grid-template-areas: |
+    "sidebar    .         .       .         ."
+    "sidebar    ground    work    bedroom   ."
+    "sidebar    media     other   home      ."
+    "sidebar    footer    footer  footer    ."
+  mediaquery:
+    # phone
+    "(max-width: 800px)":
+      grid-gap: calc(var(--custom-layout-card-padding) * 1.7)
+      grid-template-columns: 0 repeat(2, 1fr) 0
+      grid-template-rows: 0 repeat(5, fit-contents(100%)) 0fr
+      grid-template-areas: |
+        ".  .           .           ."
+        ".  sidebar     sidebar     ."
+        ".  ground      work        ."
+        ".  bedroom     other       ."
+        ".  home        media       ."
+        ".  footer      footer      ."
+        ".  .           .           ."
+    "(max-width: 1200px)":
+      grid-gap: var(--custom-layout-card-padding)
+      grid-template-columns: repeat(3, 1fr) 0
+      grid-template-rows: 0 repeat(3, fit-contents(100%)) 0fr
+      grid-template-areas: |
+        "sidebar .            .             ."
+        "sidebar ground       work          ."
+        "sidebar bedroom      other         ."
+        "sidebar media        home          ."
+        "sidebar footer       footer        ."
+        "sidebar .            .             ."
+cards:
+  - type: custom:button-card #extra_styles fix
+    styles: { card: [display: none] }
+  - !include ../tiles/sidebar.yaml
+  - !include ../tiles/ground_floor.yaml
+  - !include ../tiles/work_room.yaml
+  - !include ../tiles/other.yaml
+  - !include ../tiles/footer.yaml
+  - !include ../tiles/media.yaml
+  - !include ../tiles/outside.yaml
+  - !include ../tiles/bedroom.yaml

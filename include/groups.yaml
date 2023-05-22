@@ -1,0 +1,18 @@
+light:
+  - platform: group
+    name: "TV Corner"
+    entities:
+      - light.tvcorner1
+      - light.tvcorner2
+      - light.tvcorner3
+  - platform: group
+    name: "Living Room"
+    entities:
+      - light.tv_corner
+      - light.reading_corner
+      - light.dinner_table
+      - light.pc_corner
+  - platform: group
+    name: "Mood Lights"
+    entities:
+      - light.stone_lamp
