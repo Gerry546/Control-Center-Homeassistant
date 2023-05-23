@@ -21,11 +21,15 @@ http:
 
 # Add custom lovelace frontend
 lovelace:
-  mode: yaml
+  mode: storage
   resources:
     - url: /www/community/lovelace-layout-card/layout-card.js
       type: module
     - url: /hacsfiles/lovelace-card-mod/card-mod.js
+      type: module
+    - url: /hacsfiles/button-card/button-card.js
+      type: module
+    - url: /hacsfiles/swipe-card/swipe-card.js
       type: module
   dashboards:
     lovelace-yaml:

@@ -13,7 +13,7 @@ cards:
           - light
           - icon_toilet
       - type: custom:button-card
-        entity: light.bathroom
+        entity: light.bathroom_light
         template:
           - light
           - icon_hang
