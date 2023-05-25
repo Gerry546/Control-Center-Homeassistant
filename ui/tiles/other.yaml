@@ -8,16 +8,6 @@ cards:
     columns: 2
     cards:
       - type: custom:button-card
-        entity: light.toilets
-        template:
-          - light
-          - icon_toilet
-      - type: custom:button-card
-        entity: light.bathroom_light
-        template:
-          - light
-          - icon_hang
-      - type: custom:button-card
         entity: light.hallway
         template:
           - light

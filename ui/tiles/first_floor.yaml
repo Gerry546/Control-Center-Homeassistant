@@ -1,32 +1,31 @@
 type: grid
 columns: 1
-title: Ground Floor
+title: First Floor
 view_layout:
-  grid-area: ground
+  grid-area: first
 cards:
   - type: grid
     columns: 2
     cards:
       - type: custom:button-card
-        entity: light.living_room
-        name: Living
+        entity: light.master_bedroom
         template:
           - light
           - icon_hang
       - type: custom:button-card
-        entity: light.mood_lights
+        entity: light.bedroom_light
         template:
           - light
-          - icon_led
+          - icon_hang
       - type: custom:button-card
-        entity: light.kitchen
+        entity: light.bathroom_light
+        name: Bathroom
         template:
           - light
-          - icon_kitchen
+          - icon_hang
       - type: custom:button-card
-        entity: light.toilet_downstairs
+        entity: light.toilet_upstairs
         name: Toilet
         template:
           - light
           - icon_toilet
-

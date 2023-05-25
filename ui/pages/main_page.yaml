@@ -9,7 +9,7 @@ layout:
   grid-template-rows: 0 repeat(2, fit-content(100%)) 0fr
   grid-template-areas: |
     "sidebar    .         .       .         ."
-    "sidebar    ground    work    bedroom   ."
+    "sidebar    ground    first   second    ."
     "sidebar    media     other   home      ."
     "sidebar    footer    footer  footer    ."
   mediaquery:
@@ -21,8 +21,8 @@ layout:
       grid-template-areas: |
         ".  .           .           ."
         ".  sidebar     sidebar     ."
-        ".  ground      work        ."
-        ".  bedroom     other       ."
+        ".  ground      first       ."
+        ".  second      other       ."
         ".  home        media       ."
         ".  footer      footer      ."
         ".  .           .           ."
@@ -32,8 +32,8 @@ layout:
       grid-template-rows: 0 repeat(3, fit-contents(100%)) 0fr
       grid-template-areas: |
         "sidebar .            .             ."
-        "sidebar ground       work          ."
-        "sidebar bedroom      other         ."
+        "sidebar ground       first         ."
+        "sidebar second       other         ."
         "sidebar media        home          ."
         "sidebar footer       footer        ."
         "sidebar .            .             ."
@@ -42,9 +42,9 @@ cards:
     styles: { card: [display: none] }
   - !include ../tiles/sidebar.yaml
   - !include ../tiles/ground_floor.yaml
-  - !include ../tiles/work_room.yaml
+  - !include ../tiles/first_floor.yaml
   - !include ../tiles/other.yaml
   - !include ../tiles/footer.yaml
   - !include ../tiles/media.yaml
   - !include ../tiles/outside.yaml
-  - !include ../tiles/bedroom.yaml
+  - !include ../tiles/second_floor.yaml

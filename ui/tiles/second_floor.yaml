@@ -1,19 +1,19 @@
 type: grid
 columns: 1
-title: Work Room
+title: Second Floor
 view_layout:
-  grid-area: work
+  grid-area: second
 cards:
   - type: grid
     columns: 2
     cards:
       - type: custom:button-card
-        entity: light.study_room_light
+        entity: light.hobby_room
         template:
           - light
           - icon_hang
       - type: custom:button-card
-        entity: light.hobby_room
+        entity: light.home_office
         template:
           - light
           - icon_hang
