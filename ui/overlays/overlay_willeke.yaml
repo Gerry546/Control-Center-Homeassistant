@@ -16,7 +16,7 @@ browser_mod:
           card_mod:
             class: content
           entities:
-            - entity: person.willeke
+            - entity: person.willeke_traa
               secondary_info: last-changed
 
         - type: history-graph
@@ -26,7 +26,7 @@ browser_mod:
                 padding: 0 2em 1em 1.6em !important;
               }
           entities:
-            - entity: person.willeke
+            - entity: person.willeke_traa
 
         - type: map
           default_zoom: 16
@@ -50,6 +50,7 @@ browser_mod:
                   border-radius: 0;
                   transition: none;
                   margin-bottom: -4px !important;
+                  height: 25em !important;
                 }
               ha-map$: |
                 #map {

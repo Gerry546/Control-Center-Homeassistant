@@ -17,7 +17,7 @@ cards:
               - entity: select.conditional_media
                 state_not: Spotify
               - entity: select.conditional_media
-                state_not: Study Room
+                state_not: Home Office
               - entity: select.conditional_media
                 state_not: Living Room
               - entity: select.conditional_media
@@ -64,7 +64,7 @@ cards:
                 state: Living Room
             card:
               type: custom:button-card
-              entity: media_player.google_home_1
+              entity: media_player.living_room_speaker
               tap_action:
                 action: none
               template:
@@ -74,10 +74,10 @@ cards:
           - type: conditional
             conditions:
               - entity: select.conditional_media
-                state: Study Room
+                state: Home Office
             card:
               type: custom:button-card
-              entity: media_player.google_home_2
+              entity: media_player.home_office_speaker
               tap_action:
                 action: none
               template:
@@ -102,15 +102,15 @@ cards:
               - icon_spotify
 
           - type: custom:button-card
-            entity: media_player.google_home_1
+            entity: media_player.living_room_speaker
             name: Nest Mini Living Room
             template:
               - media
               - icon_nest_mini
 
           - type: custom:button-card
-            entity: media_player.google_home_2
-            name: Nest Mini Living Room
+            entity: media_player.home_office_speaker
+            name: Nest Mini Home Office
             template:
               - media
               - icon_nest_mini

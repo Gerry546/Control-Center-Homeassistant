@@ -29,4 +29,4 @@ person:
         return entity && variables.entity_picture
             ? `<img src="${variables.entity_picture}" width="100%">`
             : null;
-      ]]]s
+      ]]]
