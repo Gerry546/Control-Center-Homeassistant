@@ -1,0 +1,116 @@
+type: grid
+title: Media
+view_layout:
+  grid-area: media
+columns: 1
+cards:
+  - type: custom:swipe-card
+    parameters:
+      speed: 550
+      spaceBetween: 40
+      threshold: 5
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: conditional
+            conditions:
+              - entity: select.conditional_media
+                state_not: Spotify
+              - entity: select.conditional_media
+                state_not: Home Office
+              - entity: select.conditional_media
+                state_not: Living Room
+              - entity: select.conditional_media
+                state_not: TV
+            card:
+              type: custom:button-card
+              entity: media_player.tv
+              name: TV
+              tap_action:
+                action: none
+              template:
+                - conditional_media
+                - icon_tv
+
+          - type: conditional
+            conditions:
+              - entity: select.conditional_media
+                state: TV
+            card:
+              type: custom:button-card
+              entity: media_player.tv
+              tap_action:
+                action: none
+              template:
+                - conditional_media
+                - icon_tv
+
+          - type: conditional
+            conditions:
+              - entity: select.conditional_media
+                state: Spotify
+            card:
+              type: custom:button-card
+              entity: media_player.spotify
+              tap_action:
+                action: none
+              template:
+                - conditional_media
+                - icon_spotify
+
+          - type: conditional
+            conditions:
+              - entity: select.conditional_media
+                state: Living Room
+            card:
+              type: custom:button-card
+              entity: media_player.living_room_speaker
+              tap_action:
+                action: none
+              template:
+                - conditional_media
+                - icon_nest_mini
+
+          - type: conditional
+            conditions:
+              - entity: select.conditional_media
+                state: Home Office
+            card:
+              type: custom:button-card
+              entity: media_player.home_office_speaker
+              tap_action:
+                action: none
+              template:
+                - conditional_media
+                - icon_nest_mini
+
+      - type: grid
+        columns: 2
+        cards:
+          - type: custom:button-card
+            entity: media_player.tv
+            name: TV
+            template:
+              - media
+              - icon_tv
+
+          - type: custom:button-card
+            entity: media_player.spotify
+            name: Spotify
+            template:
+              - media
+              - icon_spotify
+
+          - type: custom:button-card
+            entity: media_player.living_room_speaker
+            name: Nest Mini Living Room
+            template:
+              - media
+              - icon_nest_mini
+
+          - type: custom:button-card
+            entity: media_player.home_office_speaker
+            name: Nest Mini Home Office
+            template:
+              - media
+              - icon_nest_mini

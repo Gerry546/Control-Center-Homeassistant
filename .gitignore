@@ -1,5 +1,4 @@
 # ignore confidential stuff
-tts
 secrets.yaml
 
 # ignore database
@@ -9,3 +8,8 @@ home-assistant_*
 # ignore generic folder
 .cloud
 .storage
+
+# ignore specific folder
+tts
+custom_components
+www

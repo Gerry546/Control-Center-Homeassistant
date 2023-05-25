@@ -1,0 +1,32 @@
+type: grid
+columns: 1
+title: Ground Floor
+view_layout:
+  grid-area: ground
+cards:
+  - type: grid
+    columns: 2
+    cards:
+      - type: custom:button-card
+        entity: light.living_room
+        name: Living
+        template:
+          - light
+          - icon_hang
+      - type: custom:button-card
+        entity: light.mood_lights
+        template:
+          - light
+          - icon_led
+      - type: custom:button-card
+        entity: light.kitchen
+        template:
+          - light
+          - icon_kitchen
+      - type: custom:button-card
+        entity: light.toilet_downstairs
+        name: Toilet
+        template:
+          - light
+          - icon_toilet
+

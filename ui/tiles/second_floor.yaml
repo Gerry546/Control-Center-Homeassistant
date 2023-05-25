@@ -1,0 +1,19 @@
+type: grid
+columns: 1
+title: Second Floor
+view_layout:
+  grid-area: second
+cards:
+  - type: grid
+    columns: 2
+    cards:
+      - type: custom:button-card
+        entity: light.hobby_room
+        template:
+          - light
+          - icon_hang
+      - type: custom:button-card
+        entity: light.home_office
+        template:
+          - light
+          - icon_hang
