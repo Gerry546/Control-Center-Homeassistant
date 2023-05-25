@@ -1,1 +1,9 @@
-[]
+- id: '1684965490794'
+  alias: '[RFBridge] Demultiplexer'
+  trigger:
+  - platform: mqtt
+    topic: tele/tasmota_C28E7B/RESULT
+  action:
+  - service: python_script.rfbridge_demux
+    data_template:
+      payload: '{{trigger}}'
