@@ -46,5 +46,5 @@ cards:
   - !include ../tiles/other.yaml
   - !include ../tiles/footer.yaml
   - !include ../tiles/media.yaml
-  - !include ../tiles/outside.yaml
+  - !include ../tiles/home.yaml
   - !include ../tiles/second_floor.yaml

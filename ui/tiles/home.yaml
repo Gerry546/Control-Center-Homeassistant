@@ -19,7 +19,7 @@ cards:
           - person
           - circle
       - type: custom:button-card
-        entity: person.willeke
+        entity: person.willeke_traa
         name: Willeke
         triggers_update:
           - sensor.willeke_last_changed
