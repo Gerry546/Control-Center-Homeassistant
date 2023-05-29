@@ -1,0 +1,20 @@
+mqtt:
+  binary_sensor:
+    - name: Toilet Downstairs Motion Sensor
+      state_topic: 'home/motion_toilet_downstairs'
+      off_delay: 10
+    - name: Toilet Upstairs Motion Sensor
+      state_topic: 'home/motion_toilet_upstairs'
+      off_delay: 10
+    - name: Hallway Second Floor Motion Sensor
+      state_topic: 'home/motion_hallway_2'
+      off_delay: 10
+    - name: Hallway Ground Floor Motion Sensor
+      state_topic: 'home/motion_hallway_0'
+      off_delay: 10
+    - name: Garage Motion Sensor
+      state_topic: 'home/motion_garage'
+      off_delay: 10
+    - name: Doorbell
+      state_topic: 'home/sensor_doorbell'
+      off_delay: 2
