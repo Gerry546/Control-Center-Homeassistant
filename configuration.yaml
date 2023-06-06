@@ -31,6 +31,8 @@ lovelace:
       type: module
     - url: /hacsfiles/swipe-card/swipe-card.js
       type: module
+    - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
+      type: module
   dashboards:
     lovelace-yaml:
       mode: yaml

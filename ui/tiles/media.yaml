@@ -24,7 +24,7 @@ cards:
                 state_not: TV
             card:
               type: custom:button-card
-              entity: media_player.tv
+              entity: media_player.living_room_tv
               name: TV
               tap_action:
                 action: none
@@ -38,7 +38,7 @@ cards:
                 state: TV
             card:
               type: custom:button-card
-              entity: media_player.tv
+              entity: media_player.living_room_tv
               tap_action:
                 action: none
               template:
@@ -88,7 +88,7 @@ cards:
         columns: 2
         cards:
           - type: custom:button-card
-            entity: media_player.tv
+            entity: media_player.living_room_tv
             name: TV
             template:
               - media

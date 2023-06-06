@@ -10,7 +10,5 @@ browser_mod:
     content:
       type: vertical-stack
       cards:
-        - type: custom:weather-card
-          entity: weather.buienradar
         - type: picture-entity
           entity: camera.buienradar

@@ -1,5 +1,5 @@
 conditional_media:
-  aspect_ratio: 1000/996
+  aspect_ratio: 1000/1000
   template:
     - base
     - base_media
@@ -129,8 +129,8 @@ conditional_media:
             inset(74.5% 1.45% 1.45% 1.45% round 0 0 calc(var(--button-card-border-radius) / 2) calc(var(--button-card-border-radius) / 2))
         - background: center center/cover no-repeat
         - background-image: *media_background_image
-        - left: -1.5%
-        - bottom: -1.6%
+        - left: -1.0%
+        - bottom: -2.0%
   custom_fields:
     blur_overlay: >
       [[[
