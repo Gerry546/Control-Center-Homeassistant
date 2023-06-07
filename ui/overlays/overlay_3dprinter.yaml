@@ -10,6 +10,13 @@ browser_mod:
     content:
       type: vertical-stack
       cards:
+        - type: horizontal-stack
+          cards:
+            - type: glance
+              entities:
+                - entity: binary_sensor.3d_printer_printing
+                - entity: binary_sensor.3d_printer_printing_error
+                - entity: switch.3d_printer_power_switch
         - type: picture-entity
           entity: camera.3d_printer_camera
         - type: custom:mini-graph-card
@@ -23,7 +30,7 @@ browser_mod:
               show_state: false
               name: Target
           name: Bed Temperature
-          hours_to_show: 4
+          hours_to_show: 1
           points_per_hour: 60
           show:
             name: true
