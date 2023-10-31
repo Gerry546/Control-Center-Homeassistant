@@ -45,3 +45,6 @@ homeassistant:
   packages: !include_dir_named include
 
 python_script:
+
+remote_homeassistant:
+  instances:
