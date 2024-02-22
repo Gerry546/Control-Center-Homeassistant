@@ -42,3 +42,10 @@ light:
     entities:
       - light.hallway_first_floor
       - light.hallway_light_0
+
+  - platform: group
+    name: "Master Bedroom"
+    entities:
+      - light.bed_side_lamp_1
+      - light.bed_side_lamp_2
+      - light.master_bedroom_0
