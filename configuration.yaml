@@ -4,7 +4,7 @@ default_config:
 
 # Load frontend themes from the themes folder
 frontend:
-  themes: !include_dir_merge_named common/themes
+  themes: !include_dir_merge_named themes
 
 # Text to speech
 tts:
@@ -18,28 +18,6 @@ scene: !include scenes.yaml
 http:
   use_x_forwarded_for: true
   trusted_proxies: 192.168.89.254
-
-# Add custom lovelace frontend
-lovelace:
-  mode: storage
-  resources:
-    - url: /www/community/lovelace-layout-card/layout-card.js
-      type: module
-    - url: /hacsfiles/lovelace-card-mod/card-mod.js
-      type: module
-    - url: /hacsfiles/button-card/button-card.js
-      type: module
-    - url: /hacsfiles/swipe-card/swipe-card.js
-      type: module
-    - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
-      type: module
-  dashboards:
-    lovelace-yaml:
-      mode: yaml
-      title: Dashboard
-      icon: mdi:home
-      show_in_sidebar: true
-      filename: lovelace.yaml
 
 homeassistant:
   packages: !include_dir_named include
