@@ -1,5 +1,0 @@
-button_card_templates: 
-  !include_dir_merge_named common/ui/card_templates
-
-views:
-  - !include common/ui/pages/main_page.yaml
