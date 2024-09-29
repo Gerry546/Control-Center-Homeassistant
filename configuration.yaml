@@ -15,6 +15,10 @@ tts:
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
+template: !include common/config/templates.yaml
+utility_meter: !include common/config/utility_meter.yaml
+sensor: !include common/config/sensors.yaml
+powercalc:
 
 # Due to reverse proxy have to give this IP address
 http:
