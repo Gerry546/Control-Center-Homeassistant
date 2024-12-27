@@ -1,0 +1,71 @@
+type: custom:layout-card
+layout_type: custom:grid-layout
+layout:
+  margin: -1        
+cards:
+  - type: custom:button-card
+    template: header_card
+    variables:
+      name: FIRST FLOOR
+      # TODO: Think if adding scenes is necessary
+      # label: Scenes
+      # action: more-info
+      # link: popup.living_room_scenes
+
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout: !include ../../layouts/layout-live-tile.yaml
+    cards: 
+      # TODO: collective first floor lights
+      # - type: custom:button-card
+      #   view_layout:
+      #     grid-column: span 3
+      #   template:
+      #     - light_button_card_group
+      #   entity: light.living_room
+      #   name: All Living Room Lights
+      #   icon: mdi:ceiling-light-multiple
+      #   variables:
+      #     aspect_ratio: 2/1
+  
+      - type: 'custom:decluttering-card'
+        template: light_card
+        variables:
+          - entity: light.master_bedroom
+          - name: Master Bedroom
+  
+      - type: 'custom:decluttering-card'
+        template: light_card
+        variables:
+          - entity: light.bed_side_lamp_tom
+          - name: Bedside Tom
+  
+      - type: 'custom:decluttering-card'
+        template: light_card
+        variables:
+          - entity: light.bedroom_light
+          - name: Bedroom
+  
+      - type: 'custom:decluttering-card'
+        template: light_card
+        variables:
+          - entity: light.bed_side_lamp_1
+          - name: Bedside Willeke
+  
+      - type: 'custom:decluttering-card'
+        template: light_card
+        variables:
+          - entity: light.hallway_first_floor
+          - name: Hallway
+  
+      - type: 'custom:decluttering-card'
+        template: light_card
+        variables:
+          - entity: light.toilet_upstairs
+          - name: Toilet
+  
+      - type: 'custom:decluttering-card'
+        template: light_card
+        variables:
+          - entity: light.bathroom_light
+          - name: Bathroom

@@ -1,0 +1,35 @@
+light_button_card_group:
+  template: live_tile
+  group_expand: true
+  state:
+    - value: 'on'
+      label: |
+        [[[
+          var lightsOn = entity.attributes.entity_id.filter(e => states[e].state == "on").length
+          if (lightsOn > 1) { return lightsOn + " lights are on" } else { return "1 light is on" }
+        ]]]
+  styles:
+    card:
+      - background: |
+          [[[
+            if (entity.state == "on") {
+              var lights = entity.attributes.entity_id.filter(e => states[e].state != "off")
+              if (lights.length > 0) {
+                var totalColor = [0,0,0]
+                var totalLights = 0
+                lights.forEach(light => {
+                  var colors = states[light].attributes.rgb_color
+                  if (Array.isArray(colors)) {
+                    colors.forEach((col, index) => totalColor[index] += col)
+                    totalLights += 1
+                  }
+                })
+                totalColor.forEach((col, index) => totalColor[index] = Math.round( totalColor[index] / totalLights ))
+                if (isNaN(totalColor[0])) { var finalColor = 'var(--rgb-primary-color)' } else { var finalColor = totalColor.toString() }
+                return 'linear-gradient( 0deg, rgb(' + finalColor + ') 4px, rgba(' + finalColor + ', .1) 4px )'
+              }
+            } else {
+              return 'var(--slider-thumb-color)'
+            }
+          ]]]
+      - color: var(--primary-text-color)

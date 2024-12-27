@@ -1,0 +1,30 @@
+- platform: group
+  name: PC Corner
+  unique_id: pc_corner
+  entities:
+    - light.pccorner1
+    - light.pccorner2
+    - light.pccorner3
+
+- platform: group
+  name: Living Room
+  unique_id: lights_living_room
+  entities:
+    - light.pc_corner
+    - light.dinner_corner
+    - light.play_corner
+    - light.tv_corner
+
+- platform: group
+  name: Toilet Upstairs
+  unique_id: lights_toilet_upstairs
+  entities:
+    - light.toilet_first_floor_1
+    - light.toilet_first_floor_2
+
+- platform: group
+  name: Garage
+  unique_id: lights_garage
+  entities:
+    - light.garage_front_light
+    - light.garage_back_light

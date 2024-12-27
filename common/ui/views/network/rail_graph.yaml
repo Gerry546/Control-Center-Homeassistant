@@ -1,0 +1,346 @@
+type: vertical-stack
+# view_layout:
+#   grid-column: 1/-1
+# card_mod:
+#   style: |
+#     :host {max-height: 320px;}
+#     ha-card {max-height: 320px; overflow: visible;}
+cards:
+  - type: 'custom:button-card'
+    template: header_card_no_link
+    variables:
+      name: MAP
+    view_layout:
+      grid-column: 1/-1
+
+  - type: entities
+    card_mod:
+      style: |
+        #states > * {margin: 0 !important;}
+        #states {
+          padding-top: 0 !important;
+          xtransform: rotate(90deg) translateY(-100%);
+          xtransform-origin: top left;
+        }
+        ha-card {background: none; xmax-height: 320px;}
+    entities:
+      - entity: binary_sensor.ping_cloudflare_2
+        type: 'custom:button-card'
+        name: Cloudflare
+        template: rail_station_row
+        variables:
+          rail0_entity: binary_sensor.ping_cloudflare_2
+          station_rail: 0
+          terminate_at: top 
+        label: 1.1.1.1
+        state_display: '[[[ return entity.attributes.round_trip_time_avg ? (Math.round(entity.attributes.round_trip_time_avg)) + "ms" : "Off" ]]]'
+      
+      - entity: binary_sensor.ping_google_2
+        type: 'custom:button-card'
+        template: rail_station_row
+        name: Google
+        variables:
+          rail0_entity: binary_sensor.ping_cloudflare_2
+          rail1_entity: binary_sensor.ping_google_2
+          station_rail: 1
+          terminate_at: top
+        label: 8.8.8.8
+        state_display: '[[[ return entity.attributes.round_trip_time_avg ? (Math.round(entity.attributes.round_trip_time_avg)) + "ms" : "Off" ]]]'
+      
+      - entity: sensor.fritz_box_7590_external_ip
+        type: 'custom:button-card'
+        name: External IP
+        template: rail_interchange_row
+        variables:
+          rail0_top_entity: binary_sensor.ping_cloudflare_2
+          rail1_top_entity: binary_sensor.ping_google_2
+          rail0_bottom_entity: device_tracker.fritz_box_7590
+          station_size_from: 0
+          station_size_to: 1
+        label: '[[[ return entity.state ]]]'
+        state_display: ' '
+        styles:
+          custom_fields:
+            station:
+              - background-color: '[[[ return entity.state != "unavailable" ? "var(--primary-color)" : "var(--disabled-color)" ]]]'
+
+      - type: 'custom:button-card'
+        template: rail_section_row
+        variables:
+          rail0_entity: sensor.fritz_box_7590_external_ip
+        name: Firewall
+        styles:
+          custom_fields:
+            rail0:
+              - border-left: '[[[ return "8px solid var(--primary-color)" ]]]'
+
+      - entity: device_tracker.fritz_box_7590
+        type: 'custom:button-card'
+        template: rail_interchange_row
+        variables:
+          rail0_top_entity: sensor.fritz_box_7590_external_ip
+          rail0_bottom_entity: device_tracker.tp_linkdesktop
+          rail1_bottom_entity: device_tracker.tp_linkdesktop
+          rail2_bottom_entity: device_tracker.tp_linkdesktop
+          rail3_bottom_entity: device_tracker.tp_linkdesktop
+          rail4_bottom_entity: device_tracker.homepc
+          station_size_from: 0
+          station_size_to: 4
+        name: Router
+        label: '[[[ return entity.attributes.ip ]]]'
+        state_display: '[[[ return entity.state != "not_home" ? "On" : "Off" ]]]'
+      
+      - entity: device_tracker.homepc
+        type: 'custom:button-card'
+        name: Home PC
+        template: rail_station_row
+        variables:
+          rail1_entity: device_tracker.tp_linkdesktop
+          rail0_entity: device_tracker.tp_linkdesktop
+          rail2_entity: device_tracker.fritz_repeater_600
+          rail3_entity: device_tracker.tp_linkdesktop
+          rail4_entity: device_tracker.homepc
+          terminate_at: bottom
+          station_rail: 4
+        label: '[[[ return entity.attributes.ip ]]]'
+        state_display: '[[[ return entity.state != "not_home" ? "On" : "Off" ]]]'
+
+      - entity: binary_sensor.ping_homeassistant_2
+        type: 'custom:button-card'
+        name: HomeAssistant
+        template: rail_station_row
+        variables:
+          rail0_entity: device_tracker.fritz_box_7590
+          rail1_entity: device_tracker.fritz_wlan_repeater_1750e
+          rail2_entity: device_tracker.fritz_repeater_600
+          rail3_entity: device_tracker.tp_linkdesktop
+          rail4_entity: binary_sensor.ping_homeassistant_2
+          terminate_at: terminal top
+          station_rail: 4
+        label: !secret homeassistant_ip
+        state_display: '[[[ return entity.attributes.round_trip_time_avg ? "On" : "Off" ]]]'
+
+      - entity: device_tracker.tp_linkdesktop
+        type: 'custom:button-card'
+        template: rail_interchange_row
+        variables:
+          rail0_top_entity: device_tracker.fritz_box_7590
+          rail1_top_entity: device_tracker.fritz_box_7590
+          rail2_top_entity: device_tracker.fritz_box_7590
+          rail3_top_entity: device_tracker.fritz_box_7590
+          rail4_top_entity: binary_sensor.ping_homeassistant_2
+          rail0_bottom_entity: device_tracker.fritz_box_7590
+          rail1_bottom_entity: device_tracker.fritz_wlan_repeater_1750e
+          rail2_bottom_entity: device_tracker.fritz_repeater_600
+          rail3_bottom_entity: device_tracker.ikea_tradfri_hub
+          rail4_bottom_entity: device_tracker.control_center
+          station_size_from: 3
+          station_size_to: 4
+        label: '[[[ return entity.attributes.ip ]]]'
+        state_display: '[[[ return entity.state != "not_home" ? "On" : "Off" ]]]'
+      
+      - entity: device_tracker.control_center
+        type: 'custom:button-card'
+        template: rail_station_row
+        variables:
+          rail0_entity: device_tracker.fritz_box_7590
+          rail1_entity: device_tracker.fritz_wlan_repeater_1750e
+          rail2_entity: device_tracker.fritz_repeater_600
+          rail3_entity: device_tracker.ikea_tradfri_hub
+          rail4_entity: device_tracker.control_center
+          terminate_at: bottom
+          station_rail: 4
+        label: '[[[ return entity.attributes.ip ]]]'
+        state_display: '[[[ return entity.state != "not_home" ? "On" : "Off" ]]]'
+   
+      - entity: device_tracker.ikea_tradfri_hub
+        type: 'custom:button-card'
+        template: rail_station_row
+        variables:
+          rail0_entity: device_tracker.fritz_box_7590
+          rail1_entity: device_tracker.fritz_wlan_repeater_1750e
+          rail2_entity: device_tracker.fritz_repeater_600
+          rail3_entity: device_tracker.ikea_tradfri_hub
+          terminate_at: bottom
+          station_rail: 3
+        label: '[[[ return entity.attributes.ip ]]]'
+        state_display: '[[[ return entity.state != "not_home" ? "On" : "Off" ]]]'
+
+      - entity: device_tracker.garage_door
+        type: 'custom:button-card'
+        template: rail_station_row
+        variables:
+          rail0_entity: device_tracker.fritz_box_7590
+          rail1_entity: device_tracker.fritz_wlan_repeater_1750e
+          rail2_entity: device_tracker.fritz_repeater_600
+          rail3_entity: device_tracker.garage_door
+          terminate_at: top
+          station_rail: 3
+        label: '[[[ return entity.attributes.ip ]]]'
+        state_display: '[[[ return entity.state != "not_home" ? "On" : "Off" ]]]'
+
+      - entity: device_tracker.local_tuyasmartplug2
+        type: 'custom:button-card'
+        template: rail_station_row
+        variables:
+          rail0_entity: device_tracker.fritz_box_7590
+          rail1_entity: device_tracker.fritz_wlan_repeater_1750e
+          rail2_entity: device_tracker.fritz_repeater_600
+          rail3_entity: device_tracker.garage_door
+          rail4_entity: device_tracker.local_tuyasmartplug2
+          terminate_at: top terminal
+          station_rail: 4
+        label: '[[[ return entity.attributes.ip ]]]'
+        state_display: '[[[ return entity.state != "not_home" ? "On" : "Off" ]]]'
+
+      - entity: device_tracker.fritz_repeater_600
+        type: 'custom:button-card'
+        template: rail_interchange_row
+        variables:
+          rail0_top_entity: device_tracker.fritz_box_7590
+          rail1_top_entity: device_tracker.fritz_box_7590
+          rail2_top_entity: device_tracker.fritz_box_7590
+          rail3_top_entity: device_tracker.garage_door
+          rail4_top_entity: device_tracker.local_tuyasmartplug2
+          rail0_bottom_entity: device_tracker.fritz_box_7590
+          rail1_bottom_entity: device_tracker.fritz_wlan_repeater_1750e
+          rail2_bottom_entity: device_tracker.garage_front_light
+          rail3_bottom_entity: device_tracker.garage_back_light
+          station_size_from: 2
+          station_size_to: 4
+        label: '[[[ return entity.attributes.ip ]]]'
+        state_display: '[[[ return entity.state != "not_home" ? "On" : "Off" ]]]'
+
+      - entity: device_tracker.garage_back_light
+        type: 'custom:button-card'
+        template: rail_station_row
+        variables:
+          rail0_entity: device_tracker.fritz_box_7590
+          rail1_entity: device_tracker.fritz_wlan_repeater_1750e
+          rail2_entity: device_tracker.garage_front_light
+          rail3_entity: device_tracker.garage_back_light
+          terminate_at: bottom
+          station_rail: 3
+        label: '[[[ return entity.attributes.ip ]]]'
+        state_display: '[[[ return entity.state != "not_home" ? "On" : "Off" ]]]'
+
+      - entity: device_tracker.garage_front_light
+        type: 'custom:button-card'
+        template: rail_station_row
+        variables:
+          rail0_entity: device_tracker.fritz_box_7590
+          rail1_entity: device_tracker.fritz_wlan_repeater_1750e
+          rail2_entity: device_tracker.garage_front_light
+          terminate_at: bottom
+          station_rail: 2
+        label: '[[[ return entity.attributes.ip ]]]'
+        state_display: '[[[ return entity.state != "not_home" ? "On" : "Off" ]]]'
+
+      - entity: device_tracker.home_office_shutter
+        type: 'custom:button-card'
+        template: rail_station_row
+        variables:
+          rail0_entity: device_tracker.fritz_box_7590
+          rail1_entity: device_tracker.fritz_wlan_repeater_1750e
+          rail3_entity: device_tracker.home_office_shutter
+          terminate_at: top
+          station_rail: 3
+        label: '[[[ return entity.attributes.ip ]]]'
+        state_display: '[[[ return entity.state != "not_home" ? "On" : "Off" ]]]'
+
+      - entity: device_tracker.small_lamp
+        type: 'custom:button-card'
+        template: rail_station_row
+        variables:
+          rail0_entity: device_tracker.fritz_box_7590
+          rail1_entity: device_tracker.fritz_wlan_repeater_1750e
+          rail2_entity: device_tracker.small_lamp
+          rail3_entity: device_tracker.home_office_shutter
+          terminate_at: top
+          station_rail: 2
+        label: '[[[ return entity.attributes.ip ]]]'
+        state_display: '[[[ return entity.state != "not_home" ? "On" : "Off" ]]]'
+
+      - entity: device_tracker.hpprinter
+        type: 'custom:button-card'
+        template: rail_station_row
+        variables:
+          rail0_entity: device_tracker.fritz_box_7590
+          rail1_entity: device_tracker.fritz_wlan_repeater_1750e
+          rail2_entity: device_tracker.small_lamp
+          rail3_entity: device_tracker.home_office_shutter
+          rail4_entity: device_tracker.hpprinter
+          terminate_at: top terminal
+          station_rail: 4
+        label: '[[[ return entity.attributes.ip ]]]'
+        state_display: '[[[ return entity.state != "not_home" ? "On" : "Off" ]]]'
+
+      - entity: device_tracker.fritz_wlan_repeater_1750e
+        type: 'custom:button-card'
+        template: rail_interchange_row
+        variables:
+          rail0_top_entity: device_tracker.fritz_box_7590
+          rail1_top_entity: device_tracker.fritz_box_7590
+          rail2_top_entity: device_tracker.small_lamp
+          rail3_top_entity: device_tracker.home_office_shutter
+          rail4_top_entity: device_tracker.hpprinter
+          rail0_bottom_entity: device_tracker.fritz_box_7590
+          rail1_bottom_entity: device_tracker.hobby_room_shutter
+          rail2_bottom_entity: device_tracker.3d_printer_power_switch
+          rail3_bottom_entity: device_tracker.bedroom_light
+          rail4_bottom_entity: device_tracker.google_home_mini_2
+          station_size_from: 1
+          station_size_to: 4
+        label: '[[[ return entity.attributes.ip ]]]'
+        state_display: '[[[ return entity.state != "not_home" ? "On" : "Off" ]]]'
+
+      - entity: device_tracker.hobby_room_shutter
+        type: 'custom:button-card'
+        template: rail_station_row
+        variables:
+          rail0_entity: device_tracker.fritz_box_7590
+          rail1_entity: device_tracker.hobby_room_shutter
+          rail2_entity: device_tracker.3d_printer_power_switch
+          rail3_entity: device_tracker.bedroom_light
+          rail4_entity: device_tracker.google_home_mini_2
+          terminate_at: bottom
+          station_rail: 1
+        label: '[[[ return entity.attributes.ip ]]]'
+        state_display: '[[[ return entity.state != "not_home" ? "On" : "Off" ]]]'
+
+      - entity: device_tracker.3d_printer_power_switch
+        type: 'custom:button-card'
+        template: rail_station_row
+        variables:
+          rail0_entity: device_tracker.fritz_box_7590
+          rail2_entity: device_tracker.3d_printer_power_switch
+          rail3_entity: device_tracker.bedroom_light
+          rail4_entity: device_tracker.google_home_mini_2
+          terminate_at: bottom
+          station_rail: 2
+        label: '[[[ return entity.attributes.ip ]]]'
+        state_display: '[[[ return entity.state != "not_home" ? "On" : "Off" ]]]'
+
+      - entity: device_tracker.bedroom_light
+        type: 'custom:button-card'
+        template: rail_station_row
+        variables:
+          rail0_entity: device_tracker.fritz_box_7590
+          rail3_entity: device_tracker.bedroom_light
+          rail4_entity: device_tracker.bedroom_light
+          terminate_at: bottom terminal
+          station_rail: 3
+        label: '[[[ return entity.attributes.ip ]]]'
+        state_display: '[[[ return entity.state != "not_home" ? "On" : "Off" ]]]'
+
+      - entity: device_tracker.google_home_mini_2
+        type: 'custom:button-card'
+        template: rail_station_row
+        variables:
+          rail0_entity: device_tracker.fritz_box_7590
+          rail4_entity: device_tracker.google_home_mini_2
+          terminate_at: bottom
+          station_rail: 4
+        label: '[[[ return entity.attributes.ip ]]]'
+        state_display: '[[[ return entity.state != "not_home" ? "On" : "Off" ]]]'
+# TODO: fix remaining devices

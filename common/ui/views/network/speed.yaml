@@ -1,0 +1,69 @@
+type: 'custom:layout-card'
+layout_type: 'custom:grid-layout'
+layout:
+  margin: -1        
+cards:
+  - type: 'custom:button-card'
+    template: header_card_no_link
+    variables:
+      name: Internet Speed
+  - type: 'custom:decluttering-card'
+    template: 'graph_card'
+    variables: [
+      {'hours_to_show': 1},
+      {'points_per_hour': 60},
+      {'entities': [sensor.fritz_box_7590_download_throughput]},
+      {'title': 'Download Throughput'},
+      {'lower_bound': 0},
+      {'upper_bound': '~100'},
+      {'height': 128},
+      {'show_extrema': true},
+    ]
+  - type: 'custom:decluttering-card'
+    template: 'graph_card'
+    variables: [
+      {'hours_to_show': 1},
+      {'points_per_hour': 60},
+      {'entities': [sensor.fritz_box_7590_upload_throughput]},
+      {'title': 'Upload Throughput'},
+      {'lower_bound': 0},
+      {'upper_bound': '~1'},
+      {'height': 128},
+      {'show_extrema': true},
+    ]
+  - type: 'custom:decluttering-card'
+    template: 'graph_card'
+    variables: [
+      {'hours_to_show': 24},
+      {'points_per_hour': 60},
+      {'entities': [sensor.speedtest_ping]},
+      {'title': 'Speedtest Ping'},
+      {'lower_bound': 0},
+      {'upper_bound': '~30'},
+      {'height': 128},
+      {'show_extrema': true},
+    ]
+  - type: 'custom:decluttering-card'
+    template: 'graph_card'
+    variables: [
+      {'hours_to_show': 24},
+      {'points_per_hour': 60},
+      {'entities': [sensor.speedtest_download]},
+      {'title': 'Speedtest Download'},
+      {'lower_bound': 0},
+      {'upper_bound': '~30'},
+      {'height': 128},
+      {'show_extrema': true},
+    ]
+  - type: 'custom:decluttering-card'
+    template: 'graph_card'
+    variables: [
+      {'hours_to_show': 24},
+      {'points_per_hour': 60},
+      {'entities': [sensor.speedtest_upload]},
+      {'title': 'Speedtest Upload'},
+      {'lower_bound': 0},
+      {'upper_bound': '~30'},
+      {'height': 128},
+      {'show_extrema': true},
+    ]

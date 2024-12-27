@@ -11,6 +11,7 @@ frontend:
 tts:
   - platform: google_translate
 
+group: !include common/config/groups.yaml
 automation: !include automations.yaml
 light: !include common/config/lights.yaml
 powercalc:

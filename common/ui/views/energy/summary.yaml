@@ -1,0 +1,11 @@
+type: 'custom:layout-card'
+layout_type: 'custom:grid-layout'
+layout: !include ../../layouts/section-page-title.yaml
+view_layout:
+  grid-column: 1/-1
+cards:
+  - type: markdown
+    card_mod:
+      style: !include ../../shared/style-markdown-page-title.yaml
+    content: >
+      # Energy

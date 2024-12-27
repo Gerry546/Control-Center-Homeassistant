@@ -1,0 +1,45 @@
+type: 'custom:layout-card'
+layout_type: 'custom:grid-layout'
+layout:
+  margin: -1        
+cards:
+  - type: 'custom:button-card'
+    template: header_card_no_link
+    variables:
+      name: Electricity
+  - type: 'custom:decluttering-card'
+    template: 'graph_card'
+    variables: [
+      {'hours_to_show': 24},
+      {'points_per_hour': 60},
+      {'entities': [sensor.electricity_meter_power_consumption_phase_l1]},
+      {'title': 'Consumption Phase 1'},
+      {'lower_bound': 0},
+      {'upper_bound': '~1'},
+      {'height': 128},
+      {'show_extrema': true},
+    ]
+  - type: 'custom:decluttering-card'
+    template: 'graph_card'
+    variables: [
+      {'hours_to_show': 24},
+      {'points_per_hour': 60},
+      {'entities': [sensor.electricity_meter_power_consumption_phase_l2]},
+      {'title': 'Consumption Phase 2'},
+      {'lower_bound': 0},
+      {'upper_bound': '~2.5'},
+      {'height': 128},
+      {'show_extrema': true},
+    ]
+  - type: 'custom:decluttering-card'
+    template: 'graph_card'
+    variables: [
+      {'hours_to_show': 24},
+      {'points_per_hour': 60},
+      {'entities': [sensor.electricity_meter_power_consumption_phase_l3]},
+      {'title': 'Consumption Phase 3'},
+      {'lower_bound': 0},
+      {'upper_bound': '~2.25'},
+      {'height': 128},
+      {'show_extrema': true},
+    ]

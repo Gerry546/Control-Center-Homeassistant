@@ -1,0 +1,22 @@
+title: Devices
+path: devices
+
+type: custom:grid-layout
+layout: !include ../layouts/view-page-margin.yaml
+
+cards:
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout:
+      grid-template-columns: 'repeat(auto-fill, [col-start] minmax(320px, 1fr) [col-end])'
+      grid-template-rows: auto
+      grid-column-gap: 32px
+      margin: -1px
+      mediaquery:
+        '(max-width: 799.99px)':
+          grid-template-columns: 'repeat(auto-fill, [col-start] minmax(256px, 1fr) [col-end])'
+    view_layout:
+      grid-area: cc
+    cards:
+      - !include devices/summary.yaml
+      - !include devices/3dprinter.yaml

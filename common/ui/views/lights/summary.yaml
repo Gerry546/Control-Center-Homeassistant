@@ -1,0 +1,18 @@
+type: 'custom:layout-card'
+layout_type: 'custom:grid-layout'
+layout: !include ../../layouts/section-page-title.yaml
+view_layout:
+  grid-column: 1/-1
+cards:
+  - type: markdown
+    card_mod:
+      style: !include ../../shared/style-markdown-page-title.yaml
+    #TODO: currently this counts too many lights as the light groups are also counted as lights
+    content: >
+      # Light
+
+      {% set daylight = ( state_attr('sun.sun', 'next_rising') | as_timestamp(0) - state_attr('sun.sun', 'next_setting') | as_timestamp(0) ) | abs / 60 / 60 %}
+      You have {{ states.light|length }} lights and {{ states.light|selectattr('state','equalto','on')|list|length }}
+      of them {{ iif(
+      (states.light|selectattr('state','equalto','on')|list|length
+      == 1), 'is', 'are') }}  turned on. There are {{ daylight | round(1) }} hours of daylight and {{ 24 - daylight | round(1) }} hours of nighttime today.

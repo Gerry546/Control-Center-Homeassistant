@@ -1,0 +1,31 @@
+total_number_of_devices_connected:
+  name: Total Number Of Devices Connected
+  entities:
+    - device_tracker.control_center
+    # - device_tracker.chromecast
+    # - device_tracker.google_home_mini
+    # - device_tracker.google_home_mini_2
+    # - device_tracker.homepc
+    # - device_tracker.hpprinter
+    # - device_tracker.ikeatradfrihub
+    # - device_tracker.octopi
+    # - device_tracker.shelly1_garagebacklight
+    # - device_tracker.shelly1_garagedoor
+    # - device_tracker.shelly1_garagefront
+    # - device_tracker.shelly1l_bathroom
+    # - device_tracker.shelly1l_hallway1f
+    # - device_tracker.shelly25_guestroomshutter
+    # - device_tracker.shellyht_living_room
+    # - device_tracker.shellyhomeofficeshutter
+    # - device_tracker.shellycupboardlight
+    # - device_tracker.tasmota_3dprinterpowerswitch
+    # - device_tracker.tasmota_hallway0light
+    # - device_tracker.tasmota_rfbridge
+    # - device_tracker.tasmota_smalllamp
+    # - device_tracker.tasmota_studyroomlight
+    # - device_tracker.tp_linkserverroomswitch
+    # - device_tracker.local_tuyasmartplug1
+    # - device_tracker.local_tuyasmartplug2
+    # - device_tracker.local_tuyasmartplug3
+    # - device_tracker.local_tuyasmartplug4
+    # - device_tracker.hw_watermeter_19a35a

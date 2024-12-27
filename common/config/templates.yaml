@@ -1,0 +1,45 @@
+- sensor:
+  - name: Total Energy Use
+    unique_id: total_energy_use
+    unit_of_measurement: "kWh"
+    device_class: energy
+    state_class: total        
+    state: "{{ 
+        states('sensor.electricity_meter_power_consumption') | float(0)
+      - states('sensor.electricity_meter_power_production') | float(0)
+      }}"
+
+- sensor:
+  - name: Indoor Outdoor Temperature Difference
+    unique_id: indoor_outdoor_temperature_difference
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
+    state: "{{ 
+        states('sensor.temperature') | float(0)
+      - states('sensor.temperature_humidity_temperature') | float(0)
+      }}"
+
+
+- binary_sensor:
+  - name: Ping Cloudflare 2
+    unique_id: ping_cloudflare_2
+    state: "{{ states('binary_sensor.ping_cloudflare') }}"
+    device_class: presence
+    attributes:
+      round_trip_time_avg: "{{ states('sensor.cloudflare_round_trip_time_average') }}"
+
+- binary_sensor:
+  - name: Ping Google 2
+    unique_id: ping_google_2
+    state: "{{ states('binary_sensor.ping_google') }}"
+    device_class: presence
+    attributes:
+      round_trip_time_avg: "{{ states('sensor.google_round_trip_time_average') }}"
+
+- binary_sensor:
+  - name: Ping HomeAssistant 2
+    unique_id: ping_homeassistant_2
+    state: "{{ states('binary_sensor.homeassistant') }}"
+    device_class: presence
+    attributes:
+      round_trip_time_avg: "{{ states('sensor.homeassistant_round_trip_time_average') }}"

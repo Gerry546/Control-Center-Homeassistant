@@ -1,0 +1,91 @@
+type: 'custom:layout-card'
+layout_type: 'custom:grid-layout'
+layout: !include ../../layouts/section-page-title.yaml
+view_layout:
+  grid-column: 1/-1
+cards:
+  - type: markdown
+    content: >
+      # Network
+
+      The Internet is {{ states('binary_sensor.ping_cloudflare') }} and {{ state_attr('group.total_number_of_devices_connected','entity_id') | count }} devices
+      are connected.{%- if states('sensor.speedtest_download') != 'unavailable' -%}{{ ' ' }}
+      The speed is {{ iif(states('sensor.speedtest_download')|int >= 100, 'normal', 'slower than usual') }}.{%- endif -%}
+    card_mod:
+      style:
+        .: |
+          ha-card {
+            background: none;
+          }
+        ha-markdown$: |
+          h1 {
+            font-size: var(--title-font-size);
+            font-weight: 600;
+            line-height: 1.1;
+            margin-left: -2px;
+            margin-block-end: -8px;
+          }
+
+#TODO: Fix the small badges in the summary
+  # - type: 'custom:layout-card'
+  #   layout_type: 'custom:grid-layout'
+  #   layout:
+  #     margin: 0
+  #   view_layout:
+  #     place-self: center auto
+  #   cards:
+
+  #     - type: 'custom:swipe-card'
+  #       parameters: !include ../shared/snippets/parameters-page-title-swipe-card.yaml
+  #       style: !include ../shared/snippets/style-page-title-swipe-card.yaml
+  #       cards:
+
+  #         - type: custom:state-switch
+  #           entity: mediaquery
+  #           states:
+  #             "(max-width: 799.99px), (min-width: 1024px)": &title-badge-1
+  #               type: 'custom:mushroom-entity-card'
+  #               entity: binary_sensor.ping_cloudflare
+  #               name: WAN ↗
+  #               icon_color: pink
+  #               style: !include ../shared/snippets/style-page-title-swipe-card-tile.yaml
+  #               tap_action:
+  #                 action: url
+  #                 url_path: !secret modem_url
+  #             "(min-width: 800px) and (max-width: 1023.99px)":
+  #               <<: *title-badge-1
+  #               layout: vertical
+
+  #         - type: custom:state-switch
+  #           entity: mediaquery
+  #           states:
+  #             "(max-width: 799.99px), (min-width: 1024px)": &title-badge-2
+  #               type: 'custom:mushroom-entity-card'
+  #               entity: sensor.valhalla_router_connected_devices
+  #               name: Router ↗
+  #               icon: 'mdi:router-wireless'
+  #               icon_color: pink
+  #               style: !include ../shared/snippets/style-page-title-swipe-card-tile.yaml
+  #               tap_action:
+  #                 action: url
+  #                 url_path: !secret router_url
+  #             "(min-width: 800px) and (max-width: 1023.99px)":
+  #               <<: *title-badge-2
+  #               layout: vertical
+
+  #         - type: custom:state-switch
+  #           entity: mediaquery
+  #           states:
+  #             "(max-width: 799.99px), (min-width: 1024px)": &title-badge-3
+  #               type: 'custom:mushroom-entity-card'
+  #               entity: binary_sensor.ping_valhalla_outlet
+  #               name: Outlet ↗
+  #               icon: 'mdi:power-socket-us'
+  #               icon_color: pink
+  #               style: !include ../shared/snippets/style-page-title-swipe-card-tile.yaml
+  #               tap_action:
+  #                 action: url
+  #                 url_path: !secret outlet_home_url
+  #             "(min-width: 800px) and (max-width: 1023.99px)":
+  #               <<: *title-badge-3
+  #               layout: vertical

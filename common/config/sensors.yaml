@@ -1,0 +1,53 @@
+- platform: integration
+  source: sensor.smart_plug_1_power
+  unique_id: smart_plug_1_energy
+  name: Smart Plug 1 Energy
+  unit_prefix: k
+  round: 2
+  max_sub_interval:
+    minutes: 5
+
+- platform: integration
+  source: sensor.smart_plug_2_power
+  unique_id: smart_plug_2_energy
+  name: Smart Plug 2 Energy
+  unit_prefix: k
+  round: 2
+  max_sub_interval:
+    minutes: 5
+
+- platform: integration
+  source: sensor.smart_plug_3_power
+  unique_id: smart_plug_3_energy
+  name: Smart Plug 3 Energy
+  unit_prefix: k
+  round: 2
+  max_sub_interval:
+    minutes: 5
+
+- platform: integration
+  source: sensor.smart_plug_4_power
+  unique_id: smart_plug_4_energy
+  name: Smart Plug 4 Energy
+  unit_prefix: k
+  round: 2
+  max_sub_interval:
+    minutes: 5
+
+- platform: statistics
+  name: "Total Energy Use (Hourly Max)"
+  unique_id: total_energy_use_hourly_max
+  entity_id: sensor.total_energy_use_hourly
+  state_characteristic: value_max
+  max_age:
+    hours: 1
+  sampling_size: 360
+
+- platform: statistics
+  name: "Total Energy Use (Daily Max)"
+  unique_id: total_energy_use_daily_max
+  entity_id: sensor.total_energy_use_daily
+  state_characteristic: value_max
+  max_age:
+    hours: 168
+  sampling_size: 1008

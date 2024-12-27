@@ -1,0 +1,15 @@
+title: Dashboard
+
+views:
+  - !include views/lights.yaml
+  - !include views/energy.yaml
+  - !include views/environment.yaml
+  - !include views/network.yaml
+  - !include views/devices.yaml
+
+decluttering_templates: !include templates/decluttering-card.yaml
+button_card_templates: !include_dir_merge_named templates/button-card/
+
+background: >-
+  linear-gradient(to bottom, rgba(var(--rgb-primary-color),.2),
+  var(--primary-background-color))

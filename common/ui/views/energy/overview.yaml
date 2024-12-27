@@ -1,0 +1,118 @@
+type: 'custom:layout-card'
+layout_type: 'custom:grid-layout'
+layout:
+  margin: 0
+  grid-template-columns: 'repeat(auto-fill, [col-start] minmax(360px, 1fr) [col-end])'
+view_layout:
+  grid-column-start: 1
+  grid-column-end: -1
+cards:
+  - type: 'custom:sankey-chart'
+    show_names: true
+    height: 250
+    min_box_height: 2
+    view_layout:
+      grid-column: 1/-1
+    card_mod:
+      style: >
+        ha-card { background: none; }
+
+        .connectors { left: 8px !important; right: 4px !important; }
+
+        .box div:first-child { width: 4px !important; }
+
+        .box .label { padding-left: 8px !important; font-weight:
+        500;}
+
+        .box .label span { font-weight: normal; font-style: normal
+        !important; }
+        .box .label span.state { font-weight: 600; }
+        .box .label span.name { font-size: inherit; }
+        .section:last-child { flex-grow: .667 !important; flex-shrink: 2 !important; }
+    sections:
+      - entities:
+        - entity_id: sensor.solar_panels_overall_energy_today
+          name: Solar Panels
+          color: var(--success-color)
+          children:
+            - total
+            - sensor.daily_energy_production_offpeak
+        - entity_id: sensor.daily_energy_offpeak
+          name: Grid
+          color: var(--warning-color)
+          add_entities:
+            - sensor.daily_energy_peak
+          children:
+            - total
+      - entities:
+        - entity_id: sensor.daily_energy_production_offpeak
+          name: Return to Grid
+          add_entities:
+            - sensor.daily_energy_production_peak
+          color: var(--success-color)
+        - entity_id: total
+          type: remaining_parent_state
+          name: Total Consumption
+          children:
+            - sensor.bed_side_lamp_1_energy_daily
+            - sensor.living_room_speaker_energy_daily
+            - sensor.hobby_room_shutter_energy_daily
+            - sensor.smart_plug_1_electricity_daily
+            - sensor.smart_plug_2_electricity_daily
+            - sensor.smart_plug_3_electricity_daily
+            - sensor.smart_plug_4_electricity_daily
+            - other
+      - entities:
+        - entity_id: other
+          name: Unaccounted
+          type: remaining_parent_state
+        - entity_id: sensor.smart_plug_1_electricity_daily
+          name: HomePC
+          color: magenta
+        - entity_id: sensor.smart_plug_2_electricity_daily
+          name: Garage Fridge + Freezer
+          color: magenta
+        - entity_id: sensor.smart_plug_3_electricity_daily
+          name: CV
+          color: magenta
+        - entity_id: sensor.smart_plug_4_electricity_daily
+          name: Server System
+          color: magenta
+        - entity_id: sensor.bed_side_lamp_1_energy_daily
+          name: Lights
+          add_entities:
+            - sensor.bed_side_lamp_tom_energy_daily
+            - sensor.dinner_corner_energy_daily
+            - sensor.hobby_room_energy_daily
+            - sensor.home_office_energy_daily
+            - sensor.kitchen_energy_daily
+            - sensor.master_bedroom_energy_daily
+            - sensor.pccorner1_energy_daily
+            - sensor.pccorner2_energy_daily
+            - sensor.pccorner3_energy_daily
+            - sensor.play_corner_energy_daily
+            - sensor.toilet_downstairs_energy_daily
+            - sensor.toilet_first_floor_1_energy_daily
+            - sensor.toilet_first_floor_2_energy_daily
+            - sensor.tv_corner_energy_daily
+        - entity_id: sensor.living_room_speaker_energy_daily
+          name: Media
+          add_entities:
+            - sensor.study_speaker_energy_daily
+        - entity_id: sensor.hobby_room_shutter_energy_daily
+          name: Covers
+          add_entities:
+            - sensor.home_office_shutter_energy_daily
+
+  - type: 'custom:button-card'
+    template: header_card_no_link
+    variables:
+      name: SUMMARY
+    view_layout:
+      grid-column: 1/-1
+  
+  - !include total_energy.yaml
+
+  - !include total_energy_week.yaml
+
+  - !include total_energy_piechart.yaml

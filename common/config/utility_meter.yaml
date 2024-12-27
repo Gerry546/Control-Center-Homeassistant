@@ -1,0 +1,107 @@
+daily_energy_consumption_offpeak:
+  source: sensor.electricity_meter_energy_consumption_tarif_1
+  unique_id: daily_energy_consumption_offpeak
+  name: Daily Energy Consumption (Offpeak)
+  cycle: daily
+
+daily_energy_consumption_peak:
+  source: sensor.electricity_meter_energy_consumption_tarif_2
+  unique_id: daily_energy_consumption_peak
+  name: Daily Energy Consumption (Peak)
+  cycle: daily
+
+daily_energy_production_offpeak:
+  source: sensor.electricity_meter_energy_production_tarif_1
+  unique_id: daily_energy_production_offpeak
+  name: Daily Energy Production (Offpeak)
+  cycle: daily
+
+daily_energy_production_peak:
+  source: sensor.electricity_meter_energy_production_tarif_2
+  unique_id: daily_energy_production_peak
+  name: Daily Energy Production (Peak)
+  cycle: daily
+
+daily_gas_consumption:
+  source: sensor.gas_meter_gas_consumption
+  unique_id: daily_gas_consumption
+  name: Daily Gas
+  cycle: daily
+
+monthly_energy_consumption_offpeak:
+  source: sensor.electricity_meter_energy_consumption_tarif_1
+  unique_id: monthly_energy_consumption_offpeak
+  name: Monthly Energy (Offpeak)
+  cycle: monthly
+
+monthly_energy_consumption_peak:
+  source: sensor.electricity_meter_energy_consumption_tarif_2
+  unique_id: monthly_energy_consumption_peak
+  name: Monthly Energy (Peak)
+  cycle: monthly
+
+monthly_energy_production_offpeak:
+  source: sensor.electricity_meter_energy_production_tarif_1
+  unique_id: monthly_energy_production_offpeak
+  name: Monthly Energy Production (Offpeak)
+  cycle: monthly
+
+monthly_energy_production_peak:
+  source: sensor.electricity_meter_energy_production_tarif_2
+  unique_id: monthly_energy_production_peak
+  name: Monthly Energy Production (Peak)
+  cycle: monthly
+
+monthly_gas_consumption:
+  source: sensor.gas_meter_gas_consumption
+  unique_id: monthly_gas_consumption
+  name: Monthly Gas
+  cycle: monthly
+
+smart_plug_1_electricity_daily:
+  name: Smart Plug 1 Electricity (Daily)
+  unique_id: smart_plug_1_electricity_daily
+  source: sensor.smart_plug_1_energy
+  cycle: daily
+
+smart_plug_2_electricity_daily:
+  name: Smart Plug 2 Electricity (Daily)
+  unique_id: smart_plug_2_electricity_daily
+  source: sensor.smart_plug_2_energy
+  cycle: daily
+
+smart_plug_3_electricity_daily:
+  name: Smart Plug 3 Electricity (Daily)
+  unique_id: smart_plug_3_electricity_daily
+  source: sensor.smart_plug_3_energy
+  cycle: daily
+
+smart_plug_4_electricity_daily:
+  name: Smart Plug 4 Electricity (Daily)
+  unique_id: smart_plug_4_electricity_daily
+  source: sensor.smart_plug_4_energy
+  cycle: daily
+
+hobby_room_shutter_energy_daily:
+  name: Hobby Room Shutter Energy (Daily)
+  unique_id: hobby_room_shutter_energy_daily
+  source: sensor.hobby_room_shutter_energy
+  cycle: daily
+
+home_office_shutter_energy_daily:
+  name: Home Office Shutter Energy (Daily)
+  unique_id: home_office_shutter_energy_daily
+  source: sensor.home_office_shutter_energy
+  cycle: daily
+
+total_energy_use_daily:
+  name: Total Energy Use (Daily)
+  unique_id: total_energy_use_daily
+  source: sensor.total_energy_use
+  cycle: daily
+
+total_energy_use_hourly:
+  name: Total Energy Use (Hourly)
+  unique_id: total_energy_use_hourly
+  source: sensor.total_energy_use
+  cycle: hourly

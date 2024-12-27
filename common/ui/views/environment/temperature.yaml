@@ -1,0 +1,25 @@
+type: vertical-stack
+cards:
+  - type: 'custom:button-card'
+    template: header_card_no_link
+    variables:
+      name: TEMPERATURE
+    view_layout:
+      grid-column-start: 1
+      grid-column-end: -1
+  - type: vertical-stack
+    in_card: true
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: entity
+            entity: sensor.feel_temperature
+            name: Outdoor
+            icon: none
+          - type: entity
+            entity: sensor.temperature_humidity_temperature
+            name: Indoor
+            icon: none
+          - type: entity
+            entity: sensor.indoor_outdoor_temperature_difference
+            name: Difference

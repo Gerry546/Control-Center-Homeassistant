@@ -1,0 +1,129 @@
+live_tile_card:
+  variables:
+    aspect_ratio: 1/1
+  color_type: card
+  size: 20px
+  show_state: true
+  show_label: true
+  state:
+    - value: 'off'
+      styles:
+        card:
+          - background-color: var(--ha-card-background)
+        state:
+          - color: var(--primary-text-color)
+        name:
+          - color: var(--primary-text-color)
+        label:
+          - color: var(--primary-text-color)
+          - opacity: 0.67
+    - value: unavailable
+      styles:
+        card:
+          - background-color: var(--ha-card-background)
+        state:
+          - color: var(--disabled-text-color)
+        name:
+          - color: var(--disabled-text-color)
+        label:
+          - color: var(--disabled-text-color)
+          - opacity: 0.67
+    - operator: default
+      styles:
+        card:
+          - background-color: var(--ha-card-background)
+        state:
+          - color: var(--primary-text-color)
+        name:
+          - color: var(--primary-text-color)
+        label:
+          - color: var(--primary-text-color)
+          - opacity: 0.67
+  state_display: '[[[ if (entity != undefined) { return entity.state.replace("_", " ") } ]]]'
+  hold_action:
+    action: more-info
+  styles:
+    grid:
+      - grid-template-areas: |
+          "s s"
+          "l l"
+          "n i"
+      - grid-template-columns: 1fr min-content
+      - grid-template-rows: min-content auto min-content
+    card:
+      - aspect-ratio: '[[[ return variables.aspect_ratio ]]]'
+      - padding: 0
+    name:
+      - font-size: var(--body-font-size)
+      - padding: 4px 4px 10px 12px
+      - white-space: normal
+      - text-align: left
+      - justify-self: start
+      - align-self: end
+    state:
+      - font-size: var(--h3-font-size)
+      - justify-self: start
+      - padding: 4px 12px 0px 12px
+      - font-weight: var(--h3-font-weight)
+      - align-self: start
+      - text-overflow: clip
+      - display: -webkit-box
+      - -webkit-line-clamp: 2
+      - -webkit-box-orient: vertical
+      - text-transform: capitalize
+    img_cell:
+      - align-self: end
+      - text-align: right
+      - padding: 4px 8px 4px 4px
+      - height: 28px
+    label:
+      - font-size: var(--body-font-size)
+      - justify-self: start
+      - padding: 0px 12px
+      - align-self: start
+      - opacity: 0.67
+      - white-space: normal
+      - text-align: left
+      - height: 100%
+
+live_tile:
+  template: live_tile_card
+  styles:
+    grid:
+      - grid-template-areas: '". i s ." "n n l l"'
+      - grid-template-columns: auto min-content min-content auto
+      - grid-template-rows: auto 16px 0
+    card:
+      - background: var(--ha-card-background)
+    icon:
+      - color: var(--primary-text-color)
+      - width: 40px
+      - height: 40px
+      - margin: 0
+    img_cell:
+      - height: 40px
+      - align-self: center
+      - justify-self: end
+      - padding: 8px 0 0 0
+    state:
+      - color: var(--primary-text-color)
+      - font-size: var(--h2-font-size)
+      - font-weight: var(--h2-font-weight)
+      - align-self: center
+      - justify-self: start
+      - padding: 4px 0px 2px 8px
+    name:
+      - color: var(--primary-text-color)
+      - text-transform: capitalize
+      - position: absolute
+    label:
+      - position: absolute
+      - right: 12px
+      - bottom: 10px
+      - height: auto
+      - text-align: right
+      - color: var(--primary-text-color)
+      - opacity: 0.5
+      - padding: 0
+      - justify-self: end
+      - align-self: end
