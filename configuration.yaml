@@ -24,7 +24,7 @@ utility_meter: !include common/config/utility_meter.yaml
 # Due to reverse proxy have to give this IP address
 http:
   use_x_forwarded_for: true
-  trusted_proxies: 192.168.89.254
+  trusted_proxies: !secret reverse_proxy_ip
 
 homeassistant:
   packages: !include_dir_named include
