@@ -19,6 +19,16 @@
       - states('sensor.temperature_humidity_temperature') | float(0)
       }}"
 
+- sensor:
+  - name: Indoor Outdoor Humidity Difference
+    unique_id: indoor_outdoor_humidity_difference
+    unit_of_measurement: "%"
+    icon: mdi:water-percent
+    state: "{{ 
+        states('sensor.humidity') | float(0)
+      - states('sensor.temperature_humidity_humidity') | float(0)
+      }}"
+
 
 - binary_sensor:
   - name: Ping Cloudflare 2

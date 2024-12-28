@@ -13,3 +13,4 @@ cards:
     cards:
       - !include environment/summary.yaml
       - !include environment/temperature.yaml
+      - !include environment/humidity.yaml
