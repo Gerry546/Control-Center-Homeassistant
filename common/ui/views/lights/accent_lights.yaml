@@ -4,7 +4,7 @@ layout:
   margin: -1        
 cards:
   - type: custom:button-card
-    template: header_card
+    template: header_card_no_link
     variables:
       name: ACCENT LIGHTS
       # TODO: Think if adding scenes is necessary
