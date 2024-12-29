@@ -1,7 +1,9 @@
-grid-template-columns: 'repeat(auto-fill, [col-start] minmax(356px, 1fr) [col-end])'
+grid-template-columns: 'repeat(auto-fill, [col-start] minmax(476px, 1fr) [col-end])'
 grid-template-rows: auto
 grid-column-gap: 32px
 margin: -1px
 mediaquery:
+  '(max-width: 1079.99px)':
+    grid-template-columns: 'repeat(auto-fill, [col-start] minmax(356px, 1fr) [col-end])'
   '(max-width: 799.99px)':
     grid-template-columns: 'repeat(auto-fill, [col-start] minmax(240px, 1fr) [col-end])'

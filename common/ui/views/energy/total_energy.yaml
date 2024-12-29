@@ -22,7 +22,7 @@ cards:
       start: day
     apex_config:
       chart:
-        height: 122px
+        height: 160px
       title:
         style:
           fontSize: 12px
