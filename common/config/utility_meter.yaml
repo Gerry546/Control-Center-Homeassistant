@@ -28,6 +28,12 @@ daily_gas_consumption:
   name: Daily Gas
   cycle: daily
 
+daily_water_consumption:
+  source: sensor.hw_watermeter_19a35a_total_water_usage
+  unique_id: daily_water_consumption
+  name: Daily Water
+  cycle: daily
+
 monthly_energy_consumption_offpeak:
   source: sensor.electricity_meter_energy_consumption_tarif_1
   unique_id: monthly_energy_consumption_offpeak

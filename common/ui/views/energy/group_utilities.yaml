@@ -12,7 +12,7 @@ cards:
     variables: [
       {'hours_to_show': 24},
       {'points_per_hour': 60},
-      {'entities': [sensor.hw_watermeter_19a35a_water_usage]},
+      {'entities': [sensor.daily_water]},
       {'title': 'Water Consumption'},
       {'lower_bound': 0},
       {'upper_bound': '~15'},
@@ -28,18 +28,6 @@ cards:
       {'title': 'Gas Consumption'},
       {'lower_bound': 0},
       {'upper_bound': '~1'},
-      {'height': 128},
-      {'show_extrema': true},
-    ]
-  - type: 'custom:decluttering-card'
-    template: 'graph_card'
-    variables: [
-      {'hours_to_show': 24},
-      {'points_per_hour': 60},
-      {'entities': [sensor.temperature_humidity_temperature]},
-      {'title': 'Living Room'},
-      {'lower_bound': 10},
-      {'upper_bound': '~25'},
       {'height': 128},
       {'show_extrema': true},
     ]

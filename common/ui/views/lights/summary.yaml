@@ -15,4 +15,4 @@ cards:
       You have {{ states.light|length }} lights and {{ states.light|selectattr('state','equalto','on')|list|length }}
       of them {{ iif(
       (states.light|selectattr('state','equalto','on')|list|length
-      == 1), 'is', 'are') }}  turned on. There are {{ daylight | round(1) }} hours of daylight and {{ 24 - daylight | round(1) }} hours of nighttime today.
+      == 1), 'is', 'are') }}  turned on. There are {{ daylight | round(1) }} hours of daylight and {{ (24 - daylight) | round(1) }} hours of nighttime today.
