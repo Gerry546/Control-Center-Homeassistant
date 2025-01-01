@@ -28,3 +28,31 @@
   entities:
     - light.garage_front_light
     - light.garage_back_light
+
+- platform: group
+  name: All Lights
+  unique_id: all_lights
+  entities:
+    # Ground Floor
+    - light.hallway_light_0
+    - light.pc_corner
+    - light.dinner_corner
+    - light.play_corner
+    - light.tv_corner
+    - light.kitchen
+    - light.toilet_downstairs
+    # First Floor
+    - light.bathroom_light
+    - light.hallway_first_floor
+    - light.bedroom_light
+    - light.bed_side_lamp_tom
+    - light.master_bedroom
+    - light.toilet_upstairs
+    # Second Floor
+    - light.small_lamp
+    - light.hobby_room
+    - light.home_office
+    # Outside
+    - light.garage
+    # Other
+    - light.cupboard

@@ -1,6 +1,7 @@
 title: Dashboard
 
 views:
+  - !include views/summary.yaml
   - !include views/lights.yaml
   - !include views/energy.yaml
   - !include views/environment.yaml

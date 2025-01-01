@@ -1,0 +1,58 @@
+type: 'custom:layout-card'
+layout_type: 'custom:grid-layout'
+layout:
+  grid-template-columns: >-
+    repeat(auto-fill, [col-start] minmax(112px, 1fr)
+    [col-end])
+  margin: 0
+  card_margin: 1px
+  padding: 0
+cards:
+  - type: 'custom:button-card'
+    template: header_card
+    view_layout:
+      grid-column: 1/-1
+    variables:
+      name: ENERGY
+      label: More
+      link: /ui-dashboard/Energy
+  - type: 'custom:button-card'
+    template:
+      - live_tile_with_graph
+      - live_tile_with_state_unit
+      - live_tile_with_graph_threshold
+    variables:
+      aspect_ratio: 2/1
+      state_display: '[[[ return Math.round(entity.state) ]]]'
+      points_per_hour: 4
+      hours_to_show: 24
+      graph_height: 96
+      line_width: 2
+      line_color_lower_bound: 0
+      line_color_upper_bound: 16
+      line_color_upper_bound_max: 32
+    entity: sensor.total_energy_use
+    name: Total Energy Usage
+    icon: 'mdi:home-lightning-bolt'
+    view_layout:
+      grid-column: span 4
+
+  - type: 'custom:button-card'
+    template: header_card
+    variables:
+      name: LIGHTS
+      label: All Lights
+      link: /ui-dashboard/lights
+    view_layout:
+      grid-column: 1/-1
+  - type: 'custom:button-card'
+    view_layout:
+      grid-column: span 4
+    template:
+      - light_button_card_group
+      - require_confirmation
+    entity: light.all_lights
+    name: All Lights
+    icon: 'mdi:lightbulb-multiple'
+    variables:
+      aspect_ratio: 2/1

@@ -127,3 +127,189 @@ live_tile:
       - padding: 0
       - justify-self: end
       - align-self: end
+
+live_tile_with_graph:
+  variables:
+    picture: '[[[ return entity.attributes.entity_picture ]]]'
+    hours_to_show: 12
+    group_by: interval
+    points_per_hour: 4
+    graph_height: 144
+    line_width: 4
+    line_color: var(--rgb-accent-color)
+    graph: line
+    lower_bound: ~10000
+    upper_bound: ~0
+    bar_spacing: 50
+    aggregate_func: avg
+  template: live_tile_card
+  custom_fields:
+    graph:
+      card:
+        type: custom:mini-graph-card
+        entities:
+          - entity: '[[[ return entity.entity_id ]]]'
+            aggregate_func: '[[[ return variables.aggregate_func ]]]'
+        show:
+          graph: '[[[ return variables.graph ]]]'
+          name: false
+          icon: false
+          state: false
+          labels: false
+          points: false
+        line_width: '[[[ return variables.line_width ]]]'
+        line_color: '[[[ return `rgb(${variables.line_color}` ]]]'
+        hours_to_show: '[[[ return variables.hours_to_show ]]]'
+        group_by: '[[[ return variables.group_by ]]]'
+        points_per_hour: '[[[ return variables.points_per_hour ]]]'
+        animate: true
+        upper_bound: '[[[ return variables.upper_bound ]]]'
+        lower_bound: '[[[ return variables.lower_bound ]]]'
+        height: '[[[ return variables.graph_height ]]]'
+        bar_spacing: '[[[ return variables.bar_spacing ]]]'
+        card_mod:
+          style: |
+            ha-card { background: none; border-radius: 0; }
+  styles:
+    grid:
+      - grid-template-areas: '"s s" "l l" "graph graph" "n i"'
+      - grid-template-columns: 1fr min-content
+      - grid-template-rows: min-content auto 0 min-content
+    card:
+      - color: var(--primary-text-color)
+      - background: var(--ha-card-background)
+    custom_fields:
+      graph:
+        - position: absolute
+        - bottom: 0
+        - width: 100%
+        - border-bottom: |
+            [[[
+              if (variables.graph == "line") { return `3.25rem solid rgba(${variables.line_color}, .15)` } else { return "3.25rem solid transparent" }
+            ]]]
+        - border-radius: 0
+        #   # rgba(var(--rgb-accent-color),.15)
+    name:
+      - z-index: 2
+    icon:
+      - z-index: 2
+
+live_tile_with_state_unit:
+  variables:
+    unit: '[[[ return entity.attributes.unit_of_measurement ]]]'
+    state_display: '[[[ return Math.round(entity.state) ]]]'
+  state_display: |
+    [[[
+      return variables.state_display + "<span style='font-size: var(--h6-font-size); font-weight: var(--h6-font-weight); text-transform: uppercase; opacity: .6;'> " + variables.unit + "</span>"
+    ]]]
+  styles:
+    state:
+      - text-overflow: inherit
+
+live_tile_with_graph_threshold:
+  variables:
+    line_color_upper_bound: 75
+    line_color_upper_bound_max: 100
+    line_color_lower_bound: 25
+    line_color_lower_bound_min: 0
+  custom_fields:
+    graph:
+      card:
+        line_color: |
+          [[[
+            if (parseFloat(entity.state) >= variables.line_color_upper_bound_max) { return "var(--primary-text-color)" }
+            if (parseFloat(entity.state) <= variables.line_color_lower_bound_min) { return "var(--primary-text-color)" }
+            return `rgb(${variables.line_color}`
+          ]]]
+        # color_thresholds_transition: hard
+        color_thresholds: |
+          [[[
+            var stateValue = parseFloat(entity.state)
+            if ((stateValue >= variables.line_color_upper_bound_max) || (stateValue <= variables.line_color_lower_bound_min)) {
+              return []
+            } else {
+              var primaryTextColor = '#' + getComputedStyle(document.body).getPropertyValue('--rgb-primary-text-color').split(',').map(x => parseInt(x).toString(16).padStart(2, '0')).join('')
+              var accentColor = getComputedStyle(document.body).getPropertyValue('--accent-color')
+            
+              return [
+                {
+                  value: variables.line_color_lower_bound,
+                  color: accentColor
+                },
+                {
+                  value: variables.line_color_lower_bound,
+                  color: primaryTextColor
+                },
+                {
+                  value: variables.line_color_upper_bound,
+                  color: primaryTextColor
+                },
+                {
+                  value: variables.line_color_upper_bound,
+                  color: accentColor
+                }            
+              ]
+            }
+          ]]]
+  styles:
+    grid:
+      - background: |
+          [[[
+            var stateValue = parseFloat(entity.state)
+            if (stateValue >= variables.line_color_upper_bound_max) { return "var(--accent-color)"}
+            if (stateValue <= variables.line_color_lower_bound_min) { return "var(--accent-color)"}
+            if (stateValue >= variables.line_color_upper_bound) {
+              var percent = (Math.min((stateValue - variables.line_color_upper_bound) / (variables.line_color_upper_bound_max - variables.line_color_upper_bound), 1) * .5)
+              return `rgba(var(--rgb-primary-color), ${percent})`
+            }
+            if (stateValue <= variables.line_color_lower_bound) {
+              var percent = (Math.min((variables.line_color_lower_bound - stateValue) / (variables.line_color_lower_bound - variables.line_color_lower_bound_min), 1) * .5)
+              return `rgba(var(--rgb-primary-color), ${percent})`
+            }
+            return "var(--ha-card-background)"
+          ]]]
+    custom_fields:
+      graph:
+        - border-bottom: |
+            [[[
+              var lineColor = "var(--rgb-accent-color)"
+              if (parseFloat(entity.state) >= variables.line_color_upper_bound_max) { lineColor = "var(--rgb-primary-text-color)" }
+              if (parseFloat(entity.state) <= variables.line_color_lower_bound_min) { lineColor = "var(--rgb-primary-text-color)" }
+              if (variables.graph == "line") { return `3.25rem solid rgba(${lineColor}, .15)` } else { return "3.25rem solid transparent" }
+            ]]]
+
+light_button_card_group:
+  template: live_tile_card
+  group_expand: true
+  state:
+    - value: 'on'
+      label: |
+        [[[
+          var lightsOn = entity.attributes.entity_id.filter(e => states[e].state == "on").length
+          if (lightsOn > 1) { return lightsOn + " lights are on" } else { return "1 light is on" }
+        ]]]
+  styles:
+    card:
+      - background: |
+          [[[
+            if (entity.state == "on") {
+              var lights = entity.attributes.entity_id.filter(e => states[e].state != "off")
+              if (lights.length > 0) {
+                var totalColor = [0,0,0]
+                var totalLights = 0
+                lights.forEach(light => {
+                  var colors = states[light].attributes.rgb_color
+                  if (Array.isArray(colors)) {
+                    colors.forEach((col, index) => totalColor[index] += col)
+                    totalLights += 1
+                  }
+                })
+                totalColor.forEach((col, index) => totalColor[index] = Math.round( totalColor[index] / totalLights ))
+                if (isNaN(totalColor[0])) { var finalColor = 'var(--rgb-primary-color)' } else { var finalColor = totalColor.toString() }
+                return 'linear-gradient( 0deg, rgb(' + finalColor + ') 4px, rgba(' + finalColor + ', .1) 4px )'
+              }
+            } else {
+              return 'var(--slider-thumb-color)'
+            }
+          ]]]
+      - color: var(--primary-text-color)
