@@ -1,31 +1,33 @@
 total_number_of_devices_connected:
   name: Total Number Of Devices Connected
   entities:
+    - device_tracker.3d_printer_power_switch
+    - device_tracker.bathroom_light
+    - device_tracker.bedroom_light
+    - device_tracker.chromecast
     - device_tracker.control_center
-    # - device_tracker.chromecast
-    # - device_tracker.google_home_mini
-    # - device_tracker.google_home_mini_2
-    # - device_tracker.homepc
-    # - device_tracker.hpprinter
-    # - device_tracker.ikeatradfrihub
-    # - device_tracker.octopi
-    # - device_tracker.shelly1_garagebacklight
-    # - device_tracker.shelly1_garagedoor
-    # - device_tracker.shelly1_garagefront
-    # - device_tracker.shelly1l_bathroom
-    # - device_tracker.shelly1l_hallway1f
-    # - device_tracker.shelly25_guestroomshutter
-    # - device_tracker.shellyht_living_room
-    # - device_tracker.shellyhomeofficeshutter
-    # - device_tracker.shellycupboardlight
-    # - device_tracker.tasmota_3dprinterpowerswitch
-    # - device_tracker.tasmota_hallway0light
-    # - device_tracker.tasmota_rfbridge
-    # - device_tracker.tasmota_smalllamp
-    # - device_tracker.tasmota_studyroomlight
-    # - device_tracker.tp_linkserverroomswitch
-    # - device_tracker.local_tuyasmartplug1
-    # - device_tracker.local_tuyasmartplug2
-    # - device_tracker.local_tuyasmartplug3
-    # - device_tracker.local_tuyasmartplug4
-    # - device_tracker.hw_watermeter_19a35a
+    - device_tracker.cupboard_light
+    - device_tracker.fritz_box_7590
+    - device_tracker.fritz_repeater_600
+    - device_tracker.fritz_wlan_repeater_1750e
+    - device_tracker.garage_back_light
+    - device_tracker.garage_door
+    - device_tracker.garage_front_light
+    - device_tracker.google_home_mini_2
+    - device_tracker.google_home_mini
+    - device_tracker.hobby_room_shutter
+    - device_tracker.home_office_shutter
+    - device_tracker.homepc
+    - device_tracker.hw_watermeter_19a35a
+    - device_tracker.ikea_tradfri_hub
+    - device_tracker.octopi
+    - device_tracker.tasmota_rfbridge
+    - device_tracker.shellyht_living_room
+    - device_tracker.shelly1l_hallway1f
+    - device_tracker.small_lamp
+    - device_tracker.tasmota_hallway0light
+    - device_tracker.tp_linkdesktop
+    - device_tracker.local_tuyasmartplug1
+    - device_tracker.local_tuyasmartplug2
+    - device_tracker.local_tuyasmartplug3
+    - device_tracker.local_tuyasmartplug4
