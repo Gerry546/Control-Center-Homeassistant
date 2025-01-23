@@ -313,3 +313,17 @@ light_button_card_group:
             }
           ]]]
       - color: var(--primary-text-color)
+
+live_tile_with_accent_percent_bar:
+  variables:
+    percent: '[[[ return entity.state ]]]'
+  color: var(--primary-background-color)
+  styles:
+    card:
+      - background: |
+          [[[
+            return `linear-gradient(to bottom, var(--accent-color), var(--accent-color)) bottom left / ${variables.percent}% 4px no-repeat,
+              linear-gradient(to bottom, rgba(var(--rgb-primary-color), .5), rgba(var(--rgb-primary-color), .5)) top left / ${variables.percent}% 100% no-repeat, 
+              linear-gradient(to bottom, rgba(var(--rgb-primary-color), .5), rgba(var(--rgb-primary-color), .5))`
+          ]]]
+        color: var(--accent-text-color)

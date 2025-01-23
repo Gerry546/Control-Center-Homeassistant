@@ -65,3 +65,12 @@ cards:
           grid-area: c1
         cards:
           - !include summary/c1.yaml
+      - type: "custom:layout-card"
+        layout_type: "custom:grid-layout"
+        layout:
+          margin: 0
+          card_margin: 1px
+        view_layout:
+          grid-area: c2
+        cards:
+          - !include summary/c2.yaml
