@@ -5,6 +5,7 @@ views:
   - !include views/lights.yaml
   - !include views/energy.yaml
   - !include views/environment.yaml
+  - !include views/car.yaml
   - !include views/network.yaml
   - !include views/devices.yaml
 
