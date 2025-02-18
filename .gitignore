@@ -22,3 +22,4 @@ blueprints/automation/homeassistant/notify_leaving_zone.yaml
 blueprints/automation/homeassistant/motion_light.yaml
 blueprints/script/homeassistant/confirmable_notification.yaml
 blueprints/template/homeassistant/invertes_binary_sensor.yaml
+.HA_VERSION
