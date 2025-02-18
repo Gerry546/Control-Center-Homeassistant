@@ -52,3 +52,41 @@ cards:
         tap_action:
           action: url
           url_path: !secret 3dprinter_url
+  - type: 'custom:button-card'
+    template:
+      - live_tile_with_graph
+      - live_tile_with_state_unit
+      - live_tile_with_graph_threshold
+    variables:
+      line_color_lower_bound: 100
+      line_color_upper_bound: 500
+      line_color_upper_bound_max: 700
+    entity: sensor.speedtest_upload
+    name: Upload
+  - type: 'custom:button-card'
+    template:
+      - live_tile_with_graph
+      - live_tile_with_state_unit
+      - live_tile_with_graph_threshold
+    variables:
+      line_color_lower_bound: 100
+      line_color_upper_bound: 500
+      line_color_upper_bound_max: 700
+    entity: sensor.speedtest_download
+    name: Download
+
+  - type: 'custom:button-card'
+    template: header_card
+    variables:
+      name: WEATHER
+      label: More
+      link: /ui-dashboard/weather
+    view_layout:
+      grid-column: 1/-1
+
+  - type: 'custom:button-card'
+    template:
+      - live_tile
+      - weather_variables
+      - weather_current_temperature
+    entity: weather.buienradar

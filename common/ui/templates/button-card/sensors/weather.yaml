@@ -1,0 +1,48 @@
+weather_current_temperature:
+  icon: '[[[ return variables.weather_icon ]]]'
+  name: '[[[ return variables.weather_condition ]]]'
+  label: '[[[ return variables.weather_trend ]]]'
+  state_display: >-
+    [[[ return Math.round(entity.attributes.temperature) + "°"
+    ]]]
+  styles:
+    name:
+      - width: 50%
+    grid:
+      - background: var(--ha-card-background)
+    card:
+      - background: |
+          [[[
+            var temp = parseFloat(entity.attributes.temperature)
+            if (temp >= 25) {
+              return "rgba(var(--rgb-primary-color)," + ((temp - 25) / 7) + ")"
+            }
+            if (temp <= 20) {
+              return "rgba(var(--rgb-primary-color)," + ((20 - temp) / 14) + ")"
+            }
+            return "transparent"
+          ]]]
+
+weather_variables:
+  variables:
+    weather_icon: |
+      [[[
+        var weatherIconDict = {
+          'partlycloudy': 'partly-cloudy',
+          'clear-night': 'night'
+        }
+        var weatherIcon = weatherIconDict[entity.state]
+        if (weatherIcon == null) {weatherIcon = entity.state}
+        return "mdi:weather-" + weatherIcon
+      ]]]
+    weather_condition: |
+      [[[ 
+        var weatherNameDict = {
+          'partlycloudy': 'Partly Cloudy',
+          'clear-night': 'Clear Night',
+          'lightning-rainy': 'Lightning + Rainy'
+        }
+        var weatherName = weatherNameDict[entity.state]
+        if (weatherName == null) {weatherName = entity.state}
+        return weatherName
+      ]]]
