@@ -43,4 +43,12 @@ lovelace:
       title: Dashboard
       filename: common/ui/ui-lovelace.yaml
       mode: yaml
-  resources: !include common/ui/lovelace-resources.yaml
+    # Second Dashboard
+    ui-dashboard-v2:
+      require_admin: false
+      show_in_sidebar: true
+      icon: mdi:home
+      title: Home
+      filename: ui/ui-lovelace.yaml
+      mode: yaml
+  resources: !include ui/lovelace-resources.yaml
