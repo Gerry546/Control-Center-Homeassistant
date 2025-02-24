@@ -7,7 +7,6 @@ cards:
     template: header_card_no_link
     variables:
       name: OUTSIDE
-      # TODO: Think if adding scenes is necessary
       # label: Scenes
       # action: more-info
       # link: popup.living_room_scenes
@@ -16,7 +15,6 @@ cards:
     layout_type: custom:grid-layout
     layout: !include ../../layouts/layout-live-tile.yaml
     cards: 
-      # TODO: collective outside lights
       # - type: custom:button-card
       #   view_layout:
       #     grid-column: span 3

@@ -26,7 +26,6 @@ cards:
             margin-block-end: -8px;
           }
 
-#TODO: Fix the small badges in the summary
   # - type: 'custom:layout-card'
   #   layout_type: 'custom:grid-layout'
   #   layout:

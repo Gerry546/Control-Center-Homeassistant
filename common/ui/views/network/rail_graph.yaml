@@ -343,4 +343,3 @@ cards:
           station_rail: 4
         label: '[[[ return entity.attributes.ip ]]]'
         state_display: '[[[ return entity.state != "not_home" ? "On" : "Off" ]]]'
-# TODO: fix remaining devices

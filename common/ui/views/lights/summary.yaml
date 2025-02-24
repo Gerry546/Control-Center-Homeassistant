@@ -7,7 +7,6 @@ cards:
   - type: markdown
     card_mod:
       style: !include ../../shared/style-markdown-page-title.yaml
-    #TODO: currently this counts too many lights as the light groups are also counted as lights
     content: >
       # Light
 
