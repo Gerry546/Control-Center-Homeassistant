@@ -16,42 +16,42 @@ cards:
       link: /ui-dashboard/devices
     view_layout:
       grid-column: 1/-1
-  - type: 'custom:state-switch'
-    entity: binary_sensor.octoprint_printing
-    default: "off"
-    states:
-      "on":
-        type: 'custom:button-card'
-        template:
-          - live_tile_card
-          - live_tile_with_accent_percent_bar
-        entity: sensor.octoprint_job_percentage
-        name: 3D Printer
-        state_display: |
-          [[[
-            return Math.round(states['sensor.octoprint_job_percentage'].state * 10)/10 + '<span style="font-size: var(--h6-font-size); font-weight: 600; opacity: .66;"> %</span>'
-          ]]]
-        # label: |
-        #   [[[
-        #     return 'Finishing ' + moment(states['sensor.octoprint_estimated_finish_time'].state).fromNow()
-        #   ]]]
-        tap_action:
-          action: url
-          url_path: !secret 3dprinter_url
-      "off":
-        type: 'custom:button-card'
-        template:
-          - live_tile_card
-        #   - live_tile_with_long_state
-          # - live_tile_with_last_changed_label
-        entity: sensor.octoprint_current_state
-        name: 3D Printer
-        state:
-          - value: Operational
-            color: 'rgba(var(--rgb-primary-color),.33)'
-        tap_action:
-          action: url
-          url_path: !secret 3dprinter_url
+  # - type: 'custom:state-switch'
+  #   entity: binary_sensor.octoprint_printing
+  #   default: "off"
+  #   states:
+  #     "on":
+  #       type: 'custom:button-card'
+  #       template:
+  #         - live_tile_card
+  #         - live_tile_with_accent_percent_bar
+  #       entity: sensor.octoprint_job_percentage
+  #       name: 3D Printer
+  #       state_display: |
+  #         [[[
+  #           return Math.round(states['sensor.octoprint_job_percentage'].state * 10)/10 + '<span style="font-size: var(--h6-font-size); font-weight: 600; opacity: .66;"> %</span>'
+  #         ]]]
+  #       # label: |
+  #       #   [[[
+  #       #     return 'Finishing ' + moment(states['sensor.octoprint_estimated_finish_time'].state).fromNow()
+  #       #   ]]]
+  #       tap_action:
+  #         action: url
+  #         url_path: !secret 3dprinter_url
+  #     "off":
+  #       type: 'custom:button-card'
+  #       template:
+  #         - live_tile_card
+  #       #   - live_tile_with_long_state
+  #         # - live_tile_with_last_changed_label
+  #       entity: sensor.octoprint_current_state
+  #       name: 3D Printer
+  #       state:
+  #         - value: Operational
+  #           color: 'rgba(var(--rgb-primary-color),.33)'
+  #       tap_action:
+  #         action: url
+  #         url_path: !secret 3dprinter_url
   - type: 'custom:button-card'
     template:
       - live_tile_with_graph
