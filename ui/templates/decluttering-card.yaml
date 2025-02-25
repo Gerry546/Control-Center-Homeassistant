@@ -1,0 +1,31 @@
+light_card:
+  default:
+    - name: ''
+  card:
+    type: 'custom:slider-button-card'
+    entity: '[[entity]]'
+    name: '[[name]]'
+    slider:
+      direction: left-right
+      background: solid
+      use_state_color: true
+      use_percentage_bg_opacity: true
+      show_track: true
+      toggle_on_click: false
+      force_square: true
+    show_name: true
+    show_state: true
+    compact: false
+    icon:
+      show: true
+      use_state_color: true
+      tap_action:
+        action: more-info
+      icon: ''
+    action_button:
+      mode: custom
+      icon: 'mdi:power'
+      show: false
+      show_spinner: false
+      tap_action:
+        action: toggle
