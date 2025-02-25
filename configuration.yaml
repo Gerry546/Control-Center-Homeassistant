@@ -39,16 +39,16 @@ lovelace:
     ui-dashboard:
       require_admin: false
       show_in_sidebar: true
-      icon: mdi:gauge
+      icon: mdi:home
       title: Dashboard
-      filename: common/ui/ui-lovelace.yaml
+      filename: ui/ui-lovelace.yaml
       mode: yaml
     # Second Dashboard
     ui-dashboard-v2:
       require_admin: false
-      show_in_sidebar: true
+      show_in_sidebar: false
       icon: mdi:home
       title: Home
-      filename: ui/ui-lovelace.yaml
+      filename: common/ui/ui-lovelace.yaml
       mode: yaml
   resources: !include ui/lovelace-resources.yaml
