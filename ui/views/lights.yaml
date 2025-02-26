@@ -11,6 +11,8 @@ cards:
       grid-area: cc
     cards:
 ############################################################
+# HEADER
+############################################################
       - type: markdown
         view_layout:
             grid-column: 1/-1
@@ -22,6 +24,8 @@ cards:
           of them {{ iif(
           (states.light|selectattr('state','equalto','on')|list|length
           == 1), 'is', 'are') }}  turned on. There are {{ daylight | round(1) }} hours of daylight and {{ (24 - daylight) | round(1) }} hours of nighttime today.
+############################################################
+# GROUND FLOOR
 ############################################################
       - type: custom:layout-card
         layout_type: custom:grid-layout   
@@ -73,6 +77,8 @@ cards:
               - entity: light.toilet_downstairs
               - name: Toilet
 ############################################################
+# ACCENT LIGHTS
+############################################################
       - type: custom:layout-card
         layout_type: custom:grid-layout
         layout: !include view_layouts/view_live_tiles_layout.yaml
@@ -86,6 +92,8 @@ cards:
             variables:
               - entity: light.cupboard
               - name: Cupboard
+############################################################
+# FIRST FLOOR
 ############################################################
       - type: custom:layout-card
         layout_type: custom:grid-layout
@@ -114,7 +122,7 @@ cards:
             template: light_card
             variables:
               - entity: light.bed_side_lamp_1
-              - name: Bedside Willeke
+              - name: Bedside Left
           - type: 'custom:decluttering-card'
             template: light_card
             variables:
@@ -130,6 +138,8 @@ cards:
             variables:
               - entity: light.bathroom_light
               - name: Bathroom
+############################################################
+# SECOND FLOOR
 ############################################################
       - type: custom:layout-card
         layout_type: custom:grid-layout
@@ -149,6 +159,8 @@ cards:
             variables:
               - entity: light.hobby_room
               - name: Hobby Room
+############################################################
+# OUTSIDE
 ############################################################
       - type: custom:layout-card
         layout_type: custom:grid-layout
