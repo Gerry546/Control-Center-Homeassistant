@@ -10,12 +10,12 @@ cards:
     view_layout:
       grid-area: cc
     cards:
-############################################################
-# HEADER
-############################################################
+      ############################################################
+      # HEADER
+      ############################################################
       - type: markdown
         view_layout:
-            grid-column: 1/-1
+          grid-column: 1/-1
         content: >
           # Light
 
@@ -24,11 +24,11 @@ cards:
           of them {{ iif(
           (states.light|selectattr('state','equalto','on')|list|length
           == 1), 'is', 'are') }}  turned on. There are {{ daylight | round(1) }} hours of daylight and {{ (24 - daylight) | round(1) }} hours of nighttime today.
-############################################################
-# GROUND FLOOR
-############################################################
+      ############################################################
+      # GROUND FLOOR
+      ############################################################
       - type: custom:layout-card
-        layout_type: custom:grid-layout   
+        layout_type: custom:grid-layout
         layout: !include view_layouts/view_live_tiles_layout.yaml
         cards:
           - type: markdown
@@ -41,44 +41,44 @@ cards:
             entity: light.living_room
             name: All Living Room Lights
             icon: mdi:ceiling-light-multiple
-          - type: 'custom:decluttering-card'
+          - type: custom:decluttering-card
             template: light_card
             variables:
               - entity: light.pc_corner
               - name: PC Corner
-          - type: 'custom:decluttering-card'
+          - type: custom:decluttering-card
             template: light_card
             variables:
               - entity: light.play_corner
               - name: Play Corner
-          - type: 'custom:decluttering-card'
+          - type: custom:decluttering-card
             template: light_card
             variables:
               - entity: light.dinner_corner
               - name: Dinner Corner
-          - type: 'custom:decluttering-card'
+          - type: custom:decluttering-card
             template: light_card
             variables:
               - entity: light.tv_corner
               - name: TV Corner
-          - type: 'custom:decluttering-card'
+          - type: custom:decluttering-card
             template: light_card
             variables:
               - entity: light.hallway_light_0
               - name: Hallway
-          - type: 'custom:decluttering-card'
+          - type: custom:decluttering-card
             template: light_card
             variables:
               - entity: light.kitchen
               - name: Kitchen
-          - type: 'custom:decluttering-card'
+          - type: custom:decluttering-card
             template: light_card
             variables:
               - entity: light.toilet_downstairs
               - name: Toilet
-############################################################
-# ACCENT LIGHTS
-############################################################
+      ############################################################
+      # ACCENT LIGHTS
+      ############################################################
       - type: custom:layout-card
         layout_type: custom:grid-layout
         layout: !include view_layouts/view_live_tiles_layout.yaml
@@ -87,14 +87,14 @@ cards:
             content: Accent Lights
             view_layout:
               grid-column: 1/-1
-          - type: 'custom:decluttering-card'
+          - type: custom:decluttering-card
             template: light_card
             variables:
               - entity: light.cupboard
               - name: Cupboard
-############################################################
-# FIRST FLOOR
-############################################################
+      ############################################################
+      # FIRST FLOOR
+      ############################################################
       - type: custom:layout-card
         layout_type: custom:grid-layout
         layout: !include view_layouts/view_live_tiles_layout.yaml
@@ -103,44 +103,44 @@ cards:
             content: First Floor
             view_layout:
               grid-column: 1/-1
-          - type: 'custom:decluttering-card'
+          - type: custom:decluttering-card
             template: light_card
             variables:
               - entity: light.master_bedroom
               - name: Master Bedroom
-          - type: 'custom:decluttering-card'
+          - type: custom:decluttering-card
             template: light_card
             variables:
               - entity: light.bed_side_lamp_tom
               - name: Bedside Tom
-          - type: 'custom:decluttering-card'
+          - type: custom:decluttering-card
             template: light_card
             variables:
               - entity: light.bedroom_light
               - name: Bedroom
-          - type: 'custom:decluttering-card'
+          - type: custom:decluttering-card
             template: light_card
             variables:
               - entity: light.bed_side_lamp_1
               - name: Bedside Left
-          - type: 'custom:decluttering-card'
+          - type: custom:decluttering-card
             template: light_card
             variables:
               - entity: light.hallway_first_floor
               - name: Hallway
-          - type: 'custom:decluttering-card'
+          - type: custom:decluttering-card
             template: light_card
             variables:
               - entity: light.toilet_upstairs
               - name: Toilet
-          - type: 'custom:decluttering-card'
+          - type: custom:decluttering-card
             template: light_card
             variables:
               - entity: light.bathroom_light
               - name: Bathroom
-############################################################
-# SECOND FLOOR
-############################################################
+      ############################################################
+      # SECOND FLOOR
+      ############################################################
       - type: custom:layout-card
         layout_type: custom:grid-layout
         layout: !include view_layouts/view_live_tiles_layout.yaml
@@ -149,19 +149,19 @@ cards:
             content: Second Floor
             view_layout:
               grid-column: 1/-1
-          - type: 'custom:decluttering-card'
+          - type: custom:decluttering-card
             template: light_card
             variables:
               - entity: light.home_office
               - name: Home Office
-          - type: 'custom:decluttering-card'
+          - type: custom:decluttering-card
             template: light_card
             variables:
               - entity: light.hobby_room
               - name: Hobby Room
-############################################################
-# OUTSIDE
-############################################################
+      ############################################################
+      # OUTSIDE
+      ############################################################
       - type: custom:layout-card
         layout_type: custom:grid-layout
         layout: !include view_layouts/view_live_tiles_layout.yaml
@@ -170,7 +170,7 @@ cards:
             content: Outside
             view_layout:
               grid-column: 1/-1
-          - type: 'custom:decluttering-card'
+          - type: custom:decluttering-card
             template: light_card
             variables:
               - entity: light.garage

@@ -11,9 +11,9 @@ cards:
     view_layout:
       grid-area: cc
     cards:
-############################################################
-# HEADER
-############################################################
+      ############################################################
+      # HEADER
+      ############################################################
       - type: custom:layout-card
         layout_type: custom:grid-layout
         layout:
@@ -45,33 +45,31 @@ cards:
                 entity: !secret person_b
                 fill_container: true
                 icon_type: entity-picture
-############################################################
-# ENERGY
-############################################################
+
+      ############################################################
+      # ENERGY
+      ############################################################
       - type: custom:layout-card
         layout_type: custom:grid-layout
         cards:
           - type: markdown
             content: Energy
-          - type: custom:mini-graph-card
-            entities:
-              - sensor.total_energy_use
+          - type: custom:button-card
+            entity: sensor.total_energy_use
+            name: Total Energy Usage
             icon: mdi:home-lightning-bolt
-            hours_to_show: 24
-            points_per_hour: 12
-            animate: true
-            smoothing: true
-            labels: hover
-            line_width: 2
-            color_thresholds:
-              - value: -0.2
-                color: var(--success-color)
-              - value: 0
-                color: rgba(var(--rgb-primary-color)
-            color_thresholds_transition: hard
-############################################################
-# LIGHTS
-############################################################
+            template:
+              - live_tile_graph
+              - live_tile_state_unit
+            variables:
+              aspect_ratio: 2/1
+              hours_to_show: 24
+              points_per_hour: 12
+              line_width: 2
+
+      ############################################################
+      # LIGHTS
+      ############################################################
       - type: custom:layout-card
         layout_type: custom:grid-layout
         cards:
@@ -81,9 +79,13 @@ cards:
             entity: light.all_lights
             name: All Lights
             icon: mdi:lightbulb-multiple
-############################################################
-# NETWORK
-############################################################
+            template: live_tile_card
+            variables:
+              aspect_ratio: 2/1
+
+      ############################################################
+      # NETWORK
+      ############################################################
       - type: custom:layout-card
         layout_type: custom:grid-layout
         cards:
@@ -124,9 +126,10 @@ cards:
                   - value: 350
                     color: rgba(var(--rgb-primary-color)
                 color_thresholds_transition: hard
-############################################################
-# WEATHER
-############################################################
+
+      ############################################################
+      # WEATHER
+      ############################################################
       - type: custom:layout-card
         layout_type: custom:grid-layout
         cards:

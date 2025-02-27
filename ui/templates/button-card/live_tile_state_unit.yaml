@@ -1,0 +1,11 @@
+live_tile_state_unit:
+  variables:
+    unit: "[[[ return entity.attributes.unit_of_measurement ]]]"
+    state_display: "[[[ return entity.state ]]]"
+  state_display: |
+    [[[
+      return variables.state_display + "<span style='font-size: var(--h6-font-size); font-weight: var(--h6-font-weight); text-transform: uppercase; opacity: .6;'> " + variables.unit + "</span>"
+    ]]]
+  styles:
+    state:
+      - text-overflow: inherit

@@ -1,0 +1,62 @@
+live_tile_graph:
+  variables:
+    graph: line
+    hours_to_show: 12
+    points_per_hour: 4
+    line_width: 4
+  template: live_tile_card
+  custom_fields:
+    graph:
+      card:
+        type: custom:mini-graph-card
+        entities:
+          - entity: "[[[ return entity.entity_id ]]]"
+        show:
+          graph: "[[[ return variables.graph ]]]"
+          name: false
+          icon: false
+          state: false
+          labels: false
+          points: false
+        line_width: "[[[ return variables.line_width ]]]"
+        hours_to_show: "[[[ return variables.hours_to_show ]]]"
+        points_per_hour: "[[[ return variables.points_per_hour ]]]"
+        animate: true
+        smoothing: true
+        color_thresholds_transition: hard
+        color_thresholds:
+          - value: -2
+            color: var(--success-color)
+          - value: 0
+            color: rgba(var(--rgb-primary-color)
+
+  styles:
+    grid:
+      - grid-template-areas: |
+          "s s" 
+          "l l"
+          "graph graph"
+          "n i"
+      - grid-template-columns: 1fr min-content
+      - grid-template-rows: |
+          min-content 
+          auto 
+          0 
+          min-content
+    card:
+      - color: var(--primary-text-color)
+      - background: var(--ha-card-background)
+    name:
+      - z-index: 2
+    img_cell:
+      - z-index: 2
+    custom_fields:
+      graph:
+        - position: absolute
+        - bottom: 0
+        - width: 100%
+        - border-bottom: |
+            [[[
+              if (variables.graph == "line") { return `3.25rem solid rgba(${variables.line_color}, .15)` } else { return "3.25rem solid transparent" }
+            ]]]
+        - border-radius: 0
