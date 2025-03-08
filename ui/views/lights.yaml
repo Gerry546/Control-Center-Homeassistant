@@ -36,6 +36,10 @@ cards:
             view_layout:
               grid-column: 1/-1
           - type: custom:button-card
+            template:
+              - live_tile_light_button_group
+            variables: 
+              aspect_ratio: 2/1
             view_layout:
               grid-column: span 2
             entity: light.living_room

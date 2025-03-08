@@ -1,9 +1,9 @@
 live_tile_graph:
   variables:
     graph: line
-    hours_to_show: 12
-    points_per_hour: 4
-    line_width: 4
+    hours_to_show: 24
+    points_per_hour: 12
+    line_width: 2
   template: live_tile_card
   custom_fields:
     graph:
@@ -23,12 +23,6 @@ live_tile_graph:
         points_per_hour: "[[[ return variables.points_per_hour ]]]"
         animate: true
         smoothing: true
-        color_thresholds_transition: hard
-        color_thresholds:
-          - value: -2
-            color: var(--success-color)
-          - value: 0
-            color: rgba(var(--rgb-primary-color)
 
   styles:
     grid:

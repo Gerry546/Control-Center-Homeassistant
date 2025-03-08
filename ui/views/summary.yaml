@@ -61,11 +61,10 @@ cards:
             template:
               - live_tile_graph
               - live_tile_state_unit
+              - live_tile_graph_threshold
             variables:
               aspect_ratio: 2/1
-              hours_to_show: 24
-              points_per_hour: 12
-              line_width: 2
+              line_color_lower_color: var(--success-color)
 
       ############################################################
       # LIGHTS
@@ -79,7 +78,9 @@ cards:
             entity: light.all_lights
             name: All Lights
             icon: mdi:lightbulb-multiple
-            template: live_tile_card
+            template: 
+              - live_tile_light_button_group
+              - require_confirmation
             variables:
               aspect_ratio: 2/1
 
@@ -94,38 +95,27 @@ cards:
           - type: grid
             columns: 2
             cards:
-              - type: custom:mini-graph-card
-                entities:
-                  - sensor.speedtest_download
-                icon: mdi:home-lightning-bolt
-                hours_to_show: 24
-                points_per_hour: 12
-                animate: true
-                smoothing: true
-                labels: hover
-                line_width: 2
-                color_thresholds:
-                  - value: 100
-                    color: var(--error-color)
-                  - value: 350
-                    color: rgba(var(--rgb-primary-color)
-                color_thresholds_transition: hard
-              - type: custom:mini-graph-card
-                entities:
-                  - sensor.speedtest_download
-                icon: mdi:home-lightning-bolt
-                hours_to_show: 24
-                points_per_hour: 12
-                animate: true
-                smoothing: true
-                labels: hover
-                line_width: 2
-                color_thresholds:
-                  - value: 100
-                    color: var(--error-color)
-                  - value: 350
-                    color: rgba(var(--rgb-primary-color)
-                color_thresholds_transition: hard
+              - type: custom:button-card
+                template:
+                  - live_tile_graph
+                  - live_tile_state_unit
+                  - live_tile_graph_threshold
+                entity: sensor.speedtest_download
+                name: Download Speed
+                variables:
+                  line_color_lower_threshold: 100
+                  line_color_upper_threshold: 350
+              - type: custom:button-card
+                template:
+                  - live_tile_graph
+                  - live_tile_state_unit
+                  - live_tile_graph_threshold
+                entity: sensor.speedtest_upload
+                name: Upload Speed
+                variables:
+                  hours_to_show: 1
+                  line_color_lower_threshold: 100
+                  line_color_upper_threshold: 350
 
       ############################################################
       # WEATHER
@@ -141,3 +131,21 @@ cards:
             entity: weather.buienradar
             forecast_type: daily
             secondary_info_attribute: wind_speed
+
+      ############################################################
+      # DEVICES
+      ############################################################
+      - type: custom:layout-card
+        layout_type: custom:grid-layout
+        cards:
+          - type: markdown
+            content: Devices
+
+      ############################################################
+      # ENVIRONMENT
+      ############################################################
+      - type: custom:layout-card
+        layout_type: custom:grid-layout
+        cards:
+          - type: markdown
+            content: Environment

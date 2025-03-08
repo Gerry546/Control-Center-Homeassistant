@@ -1,0 +1,15 @@
+live_tile_graph_threshold:
+  variables:
+    line_color_lower_threshold: -2
+    line_color_upper_threshold: 0
+    line_color_lower_color: var(--error-color)
+    line_color_upper_color: rgba(var(--rgb-primary-color)
+  custom_fields:
+    graph:
+      card:
+        color_thresholds:
+          - value: "[[[ return variables.line_color_lower_threshold ]]]"
+            color: "[[[ return variables.line_color_lower_color ]]]"
+          - value: "[[[ return variables.line_color_upper_threshold ]]]"
+            color: "[[[ return variables.line_color_upper_color ]]]"
+        color_thresholds_transition: hard
