@@ -102,8 +102,13 @@ cards:
                   - live_tile_graph_threshold
                 entity: sensor.speedtest_download
                 name: Download Speed
+                custom_fields:
+                  graph:
+                    card:
+                      lower_bound: 0
+                      upper_bound: 450
                 variables:
-                  line_color_lower_threshold: 100
+                  line_color_lower_threshold: 200
                   line_color_upper_threshold: 350
               - type: custom:button-card
                 template:
@@ -112,9 +117,14 @@ cards:
                   - live_tile_graph_threshold
                 entity: sensor.speedtest_upload
                 name: Upload Speed
+                custom_fields:
+                  graph:
+                    card:
+                      lower_bound: 0
+                      upper_bound: 450
                 variables:
                   hours_to_show: 1
-                  line_color_lower_threshold: 100
+                  line_color_lower_threshold: 200
                   line_color_upper_threshold: 350
 
       ############################################################
