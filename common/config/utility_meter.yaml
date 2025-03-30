@@ -100,6 +100,12 @@ home_office_shutter_energy_daily:
   source: sensor.home_office_shutter_energy
   cycle: daily
 
+charging_station_use_daily:
+  name: Charging Station Energy Use (Daily)
+  unique_id: charging_station_energy_use_daily
+  source: sensor.ev_charging_station_energy_meter
+  cycle: daily
+
 total_energy_use_daily:
   name: Total Energy Use (Daily)
   unique_id: total_energy_use_daily
