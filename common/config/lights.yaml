@@ -49,7 +49,6 @@
     - light.master_bedroom
     - light.toilet_upstairs
     # Second Floor
-    - light.small_lamp
     - light.hobby_room
     - light.home_office
     # Outside
