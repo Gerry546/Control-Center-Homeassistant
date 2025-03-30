@@ -11,7 +11,4 @@ cards:
     view_layout:
       grid-area: cc
     cards:
-      - !include energy/summary.yaml
       - !include energy/overview.yaml
-      - !include energy/group_energy.yaml
-      - !include energy/group_utilities.yaml

@@ -58,6 +58,10 @@ cards:
             entity: sensor.total_energy_use
             name: Total Energy Usage
             icon: mdi:home-lightning-bolt
+            custom_fields:
+                  graph:
+                    card:
+                      lower_bound: -3.5
             template:
               - live_tile_graph
               - live_tile_state_unit
@@ -123,9 +127,8 @@ cards:
                       lower_bound: 0
                       upper_bound: 450
                 variables:
-                  hours_to_show: 1
-                  line_color_lower_threshold: 200
-                  line_color_upper_threshold: 350
+                  line_color_lower_threshold: 100
+                  line_color_upper_threshold: 300
 
       ############################################################
       # WEATHER

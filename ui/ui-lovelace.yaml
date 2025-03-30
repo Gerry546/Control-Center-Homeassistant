@@ -4,3 +4,4 @@ decluttering_templates: !include templates/decluttering-card.yaml
 views:
   - !include views/summary.yaml
   - !include views/lights.yaml
+  - !include views/energy.yaml
