@@ -1,0 +1,93 @@
+title: Network
+path: network
+
+type: custom:grid-layout
+layout: !include view_layouts/view_base_layout.yaml
+cards:
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout: !include view_layouts/view_column_layout.yaml
+    view_layout:
+      grid-area: cc
+    cards:
+      ############################################################
+      # HEADER
+      ############################################################
+      - type: markdown
+        view_layout:
+          grid-column: 1/-1
+        content: >
+          # Network
+
+          The Internet is {{ states('binary_sensor.ping_cloudflare') }} and {{ state_attr('group.total_number_of_devices_connected','entity_id') | count }} devices
+          are connected.{%- if states('sensor.speedtest_download') != 'unavailable' -%}{{ ' ' }}
+          The speed is {{ iif(states('sensor.speedtest_download')|int >= 100, 'normal', 'slower than usual') }}.{%- endif -%}
+      ############################################################
+      # Internet speed cards
+      ############################################################
+      - type: vertical-stack
+        cards:
+          - type: markdown
+            content: Network Speed
+            view_layout:
+              grid-column: 1/-1
+          - type: 'custom:decluttering-card'
+            template: 'graph_card'
+            variables: [
+              {'hours_to_show': 2},
+              {'points_per_hour': 60},
+              {'entities': [sensor.fritz_box_7590_download_throughput]},
+              {'title': 'Download Throughput'},
+              {'lower_bound': 0},
+              {'upper_bound': '~100'},
+              {'height': 128},
+              {'show_extrema': true},
+            ]
+          - type: 'custom:decluttering-card'
+            template: 'graph_card'
+            variables: [
+              {'hours_to_show': 1},
+              {'points_per_hour': 60},
+              {'entities': [sensor.fritz_box_7590_upload_throughput]},
+              {'title': 'Upload Throughput'},
+              {'lower_bound': 0},
+              {'upper_bound': '~1'},
+              {'height': 128},
+              {'show_extrema': true},
+            ]
+          - type: 'custom:decluttering-card'
+            template: 'graph_card'
+            variables: [
+              {'hours_to_show': 24},
+              {'points_per_hour': 60},
+              {'entities': [sensor.speedtest_ping]},
+              {'title': 'Speedtest Ping'},
+              {'lower_bound': 0},
+              {'upper_bound': '~30'},
+              {'height': 128},
+              {'show_extrema': true},
+            ]
+          - type: 'custom:decluttering-card'
+            template: 'graph_card'
+            variables: [
+              {'hours_to_show': 24},
+              {'points_per_hour': 60},
+              {'entities': [sensor.speedtest_download]},
+              {'title': 'Speedtest Download'},
+              {'lower_bound': 0},
+              {'upper_bound': '~30'},
+              {'height': 128},
+              {'show_extrema': true},
+            ]
+          - type: 'custom:decluttering-card'
+            template: 'graph_card'
+            variables: [
+              {'hours_to_show': 24},
+              {'points_per_hour': 60},
+              {'entities': [sensor.speedtest_upload]},
+              {'title': 'Speedtest Upload'},
+              {'lower_bound': 0},
+              {'upper_bound': '~30'},
+              {'height': 128},
+              {'show_extrema': true},
+            ]

@@ -5,3 +5,4 @@ views:
   - !include views/summary.yaml
   - !include views/lights.yaml
   - !include views/energy.yaml
+  - !include views/network.yaml
