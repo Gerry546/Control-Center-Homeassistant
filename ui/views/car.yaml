@@ -1,0 +1,46 @@
+title: Car
+path: car
+
+type: custom:grid-layout
+layout: !include view_layouts/view_base_layout.yaml
+cards:
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout: !include view_layouts/view_column_layout.yaml
+    view_layout:
+      grid-area: cc
+    cards:
+      ############################################################
+      # HEADER
+      ############################################################
+      - type: markdown
+        view_layout:
+          grid-column: 1/-1
+        content: >
+          # Car
+      ############################################################
+      # Car
+      ############################################################
+      - view_layout:
+          grid-column: 1/-1
+        # image: /local/Car.svg
+        # elements: []
+        title: Kia EV3
+        type: custom:ultra-vehicle-card
+        vehicle_image: /local/Car.svg
+        bars:
+          - entity: sensor.ev3_sv1_24_ev_battery_level
+            use_gradient: true
+            left_entity: sensor.ev3_sv1_24_ev_range
+            left_title: EV Range
+            right_entity: sensor.ev3_sv1_24_average_energy_consumption
+            right_title: Efficiency
+        icon_rows:
+          - width: '100%'
+            alignment: space-between
+            icons:
+              - entity: sensor.ev3_sv1_24_odometer
+                name: Mileage
+              - entity: sensor.ev3_sv1_24_ev_state_of_health_battery
+                name: Battery Health
+                
