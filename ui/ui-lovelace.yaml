@@ -1,9 +1,11 @@
 button_card_templates: !include_dir_merge_named templates/button-card/
 decluttering_templates: !include templates/decluttering-card.yaml
+apexcharts_card_templates: !include templates/apexcharts-card.yaml
 
 views:
   - !include views/summary.yaml
   - !include views/lights.yaml
   - !include views/energy.yaml
+  - !include views/environment.yaml
   - !include views/network.yaml
   - !include views/car.yaml

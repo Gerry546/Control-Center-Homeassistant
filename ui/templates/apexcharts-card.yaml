@@ -68,14 +68,14 @@ environment_chart:
           fontFamily: var(--font-stack)
     yaxis:
       labels:
-        # minWidth: 160
-        offsetX: 20 #50
-      #   style:
-      #     fontSize: var(--h6-font-size)
-      #     fontFamily: var(--font-stack)
+        minWidth: 160
+        offsetX: 50
+        style:
+          fontSize: var(--h6-font-size)
+          fontFamily: var(--font-stack)
       tooltip:
         enabled: true
-      #   offsetX: 40
+        offsetX: 40
     grid:
       strokeDashArray: 1,2
       borderColor: rgba(var(--rgb-primary-text-color),.25)
@@ -97,15 +97,15 @@ environment_chart:
     forecastDataPoints:
       strokeWidth: 1
       dashArray: 2,2
-  card_mod:
-    style: >
-      #graph {margin-left: -36px; margin-top: -16px;}
-      .apexcharts-yaxis-label { font-family: var(--font-stack) !important; 
-        font-size: var(--h6-font-size) !important;
-        opacity: 0.15;}
-      .apexcharts-yaxis-label:nth-child(5n+1) { opacity: .5;}
-      .apexcharts-xaxis-label { opacity: .5; transform: translate(0, -12px); }
-      .apexcharts-xaxis-annotation-label { font-family: var(--font-stack) !important; 
-        font-size: var(--h6-font-size) !important; font-weight: 600 !important;}
-      .apexcharts-point-annotation-label { font-family: var(--font-stack) !important; 
-        font-size: var(--h6-font-size) !important; font-weight: normal !important;}
+  # card_mod:
+  #   style: >
+  #     #graph {margin-left: -36px;}
+  #     .apexcharts-yaxis-label { font-family: var(--font-stack) !important; 
+  #       font-size: var(--h6-font-size) !important;
+  #       opacity: 0.15;}
+  #     .apexcharts-yaxis-label:nth-child(5n+1) { opacity: .5;}
+  #     .apexcharts-xaxis-label { opacity: .5; transform: translate(0, -12px); }
+  #     .apexcharts-xaxis-annotation-label { font-family: var(--font-stack) !important; 
+  #       font-size: var(--h6-font-size) !important; font-weight: 600 !important;}
+  #     .apexcharts-point-annotation-label { font-family: var(--font-stack) !important; 
+  #       font-size: var(--h6-font-size) !important; font-weight: normal !important;}
