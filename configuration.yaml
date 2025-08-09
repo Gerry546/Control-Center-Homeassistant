@@ -11,15 +11,10 @@ frontend:
 tts:
   - platform: google_translate
 
-group: !include common/config/groups.yaml
 automation: !include automations.yaml
-light: !include common/config/lights.yaml
 powercalc:
 scene: !include scenes.yaml
 script: !include scripts.yaml
-sensor: !include common/config/sensors.yaml
-template: !include common/config/templates.yaml
-utility_meter: !include common/config/utility_meter.yaml
 
 # Due to reverse proxy have to give this IP address
 http:
@@ -30,25 +25,3 @@ homeassistant:
   packages: !include_dir_named include
 
 python_script:
-
-# Add custom lovelace frontend
-lovelace:
-  mode: yaml
-  dashboards:
-    # Main Dashboard
-    ui-dashboard:
-      require_admin: false
-      show_in_sidebar: true
-      icon: mdi:home
-      title: Dashboard
-      filename: ui/ui-lovelace.yaml
-      mode: yaml
-    # Second Dashboard
-    ui-dashboard-v2:
-      require_admin: false
-      show_in_sidebar: false
-      icon: mdi:home
-      title: Home
-      filename: common/ui/ui-lovelace.yaml
-      mode: yaml
-  resources: !include ui/lovelace-resources.yaml
