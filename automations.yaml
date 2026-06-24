@@ -7,3 +7,476 @@
   - service: python_script.rfbridge_demux
     data_template:
       payload: '{{trigger}}'
+- id: '1754855812254'
+  alias: Turn on Lights on Sunset When Someone Is Home
+  description: ''
+  triggers:
+  - trigger: sun
+    event: sunset
+    offset: -00:30:00
+  conditions:
+  - condition: or
+    conditions:
+    - condition: zone
+      entity_id: person.willeke_traa
+      zone: zone.home
+      enabled: true
+    - condition: zone
+      entity_id: person.tom_geelen
+      zone: zone.home
+      enabled: true
+    enabled: true
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    data: {}
+    target:
+      area_id:
+      - living_room
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness_pct: 100
+    target:
+      entity_id: light.cupboard
+  mode: single
+- id: '1754856570923'
+  alias: Turn on Lights In The Evening When Someone Comes Home
+  description: ''
+  triggers:
+  - trigger: zone
+    entity_id: person.tom_geelen
+    zone: zone.home
+    event: enter
+  - trigger: zone
+    entity_id: person.willeke_traa
+    zone: zone.home
+    event: enter
+  conditions:
+  - condition: sun
+    before: sunrise
+    after: sunset
+    after_offset: -00:30:00
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    data: {}
+    target:
+      area_id:
+      - living_room
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness_pct: 100
+    target:
+      entity_id: light.cupboard
+  mode: single
+- id: '1754857589194'
+  alias: Adjust Lights Off When Good Night Is Said To Google
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - input_boolean.bed_time_trigger
+    from: 'off'
+    to: 'on'
+  conditions: []
+  actions:
+  - action: input_boolean.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.bed_time_trigger
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      area_id:
+      - living_room
+      - kitchen
+      - accents
+      - garage
+      - hobby_room
+      - home_office
+      - bedroom
+  - action: light.turn_on
+    metadata: {}
+    data: {}
+    target:
+      area_id: bathroom
+  mode: single
+- id: '1754857784983'
+  alias: Turn Off Lights When House Is Empty
+  description: ''
+  triggers:
+  - trigger: zone
+    entity_id: person.tom_geelen
+    zone: zone.home
+    event: leave
+  - trigger: zone
+    entity_id: person.willeke_traa
+    zone: zone.home
+    event: leave
+  conditions:
+  - condition: not
+    conditions:
+    - condition: zone
+      entity_id: person.tom_geelen
+      zone: zone.home
+    - condition: zone
+      entity_id: person.willeke_traa
+      zone: zone.home
+  actions:
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      floor_id:
+      - ground_floor
+      - first_floor
+      - outside
+      - second_floor
+      area_id: accents
+  mode: single
+- id: '1754858383689'
+  alias: 'Motion Triggered Light: Toilet Downstairs'
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.toilet_downstairs_motion_sensor
+    from: 'off'
+    to: 'on'
+  conditions: []
+  actions:
+  - sequence:
+    - if:
+      - condition: time
+        after: '22:00:00'
+        before: 06:00:00
+      then:
+      - action: light.turn_on
+        metadata: {}
+        data:
+          brightness_pct: 10
+        target:
+          area_id: toilet_downstairs
+      else:
+      - action: light.turn_on
+        metadata: {}
+        data:
+          brightness_pct: 100
+        target:
+          area_id: toilet_downstairs
+    - delay:
+        hours: 0
+        minutes: 5
+        seconds: 0
+        milliseconds: 0
+    - action: light.turn_off
+      metadata: {}
+      data: {}
+      target:
+        area_id: toilet_downstairs
+  mode: restart
+- id: '1754858590972'
+  alias: 'Motion Triggered Light: Hallway Ground Floor'
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.hallway_ground_floor_motion_sensor
+    from: 'off'
+    to: 'on'
+  conditions:
+  - condition: sun
+    before: sunrise
+    after: sunset
+  actions:
+  - sequence:
+    - action: light.turn_on
+      metadata: {}
+      data:
+        brightness_pct: 10
+      target:
+        area_id:
+        - hallway_ground_floor
+    - delay:
+        hours: 0
+        minutes: 2
+        seconds: 0
+        milliseconds: 0
+    - action: light.turn_off
+      metadata: {}
+      data: {}
+      target:
+        area_id:
+        - hallway_ground_floor
+  mode: restart
+- id: '1754859412402'
+  alias: 'Motion Triggered Light: Toilet Upstairs'
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.toilet_upstairs_motion_sensor
+    from: 'off'
+    to: 'on'
+  conditions:
+  - condition: sun
+    after: sunset
+    before: sunrise
+  actions:
+  - sequence:
+    - if:
+      - condition: time
+        after: '22:00:00'
+        before: 06:00:00
+      then:
+      - action: light.turn_on
+        metadata: {}
+        data:
+          brightness_pct: 10
+        target:
+          area_id: toilet
+      else:
+      - action: light.turn_on
+        metadata: {}
+        data:
+          brightness_pct: 100
+        target:
+          area_id: toilet
+    - delay:
+        hours: 0
+        minutes: 5
+        seconds: 0
+        milliseconds: 0
+    - action: light.turn_off
+      metadata: {}
+      data: {}
+      target:
+        area_id: toilet
+  mode: restart
+- id: '1754908132886'
+  alias: 'Motion Triggered Light: Garage'
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.garage_motion_sensor
+    from: 'off'
+    to: 'on'
+  conditions: []
+  actions:
+  - sequence:
+    - action: light.turn_on
+      metadata: {}
+      data:
+        brightness_pct: 10
+      target:
+        area_id: garage
+    - delay:
+        hours: 0
+        minutes: 5
+        seconds: 0
+        milliseconds: 0
+    - action: light.turn_off
+      metadata: {}
+      data: {}
+      target:
+        area_id: garage
+  mode: restart
+- id: '1754908303828'
+  alias: 'Motion Triggered Light: Hallway Second Floor'
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.hallway_second_floor_motion_sensor
+    from: 'off'
+    to: 'on'
+  conditions:
+  - condition: sun
+    before: sunrise
+    after: sunset
+  actions:
+  - sequence:
+    - action: light.turn_on
+      metadata: {}
+      data:
+        brightness_pct: 10
+      target:
+        area_id: hallway
+    - delay:
+        hours: 0
+        minutes: 5
+        seconds: 0
+        milliseconds: 0
+    - action: light.turn_off
+      metadata: {}
+      data: {}
+      target:
+        area_id: hallway
+  mode: restart
+- id: '1755037090883'
+  alias: 3d Printer Power Supply Turn On
+  description: ''
+  triggers:
+  - type: turned_on
+    device_id: c3ce6a6d1ec3378a1f147bfdeb352575
+    entity_id: 3a1ad728024d523235e82d020f3de4e5
+    domain: binary_sensor
+    trigger: device
+  conditions: []
+  actions:
+  - type: turn_on
+    device_id: 726411d064949e175d9d3ee0575d252b
+    entity_id: e89333e79c1f4dd55d1a19e03d9018e5
+    domain: switch
+  - action: notify.mobile_app_tom_gsm_samsung
+    metadata: {}
+    data:
+      message: Power Supply Turned On
+      title: 3D Printer
+  mode: single
+- id: '1755038142591'
+  alias: 3D Printer Power Supply Turn Off
+  description: ''
+  triggers:
+  - type: turned_off
+    device_id: c3ce6a6d1ec3378a1f147bfdeb352575
+    entity_id: 3a1ad728024d523235e82d020f3de4e5
+    domain: binary_sensor
+    trigger: device
+  - type: turned_on
+    device_id: c3ce6a6d1ec3378a1f147bfdeb352575
+    entity_id: d33d1cb72414c405158750d9690adc1c
+    domain: binary_sensor
+    trigger: device
+  conditions: []
+  actions:
+  - sequence:
+    - delay:
+        hours: 0
+        minutes: 5
+        seconds: 0
+        milliseconds: 0
+    - type: turn_off
+      device_id: 726411d064949e175d9d3ee0575d252b
+      entity_id: e89333e79c1f4dd55d1a19e03d9018e5
+      domain: switch
+    - action: notify.mobile_app_tom_pixel_7a
+      metadata: {}
+      data:
+        message: Power Supply Turned Off
+        title: 3D Printer
+    - if:
+      - type: is_on
+        condition: device
+        device_id: c3ce6a6d1ec3378a1f147bfdeb352575
+        entity_id: d33d1cb72414c405158750d9690adc1c
+        domain: binary_sensor
+      then:
+      - action: notify.mobile_app_tom_pixel_7a
+        metadata: {}
+        data:
+          title: 3D Printer
+          message: Printer Error Reported
+  mode: single
+- id: '1756731665662'
+  alias: Neko leaves
+  description: ''
+  triggers:
+  - trigger: zone
+    entity_id: person.neko
+    zone: zone.home
+    event: leave
+  conditions: []
+  actions:
+  - action: notify.mobile_app_gsm_willeke
+    metadata: {}
+    data:
+      message: Neko has gone Prowling
+      title: Neko
+  - action: notify.mobile_app_tom_gsm_samsung
+    metadata: {}
+    data:
+      message: Neko has gone Prowling
+      title: Neko
+  mode: single
+- id: '1756743307739'
+  alias: Neko Enters Home Area
+  description: ''
+  triggers:
+  - trigger: zone
+    entity_id: person.neko
+    zone: zone.home
+    event: enter
+  conditions: []
+  actions:
+  - action: notify.mobile_app_gsm_willeke
+    metadata: {}
+    data:
+      message: Neko has returned from exploring
+      title: Neko
+  - action: notify.mobile_app_tom_gsm_samsung
+    metadata: {}
+    data:
+      message: Neko has returned from exploring
+      title: Neko
+  mode: single
+- id: '1758715802383'
+  alias: Neko Tracker Battery Level
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.neko_battery
+    below: 30
+  conditions: []
+  actions:
+  - action: notify.mobile_app_gsm_willeke
+    metadata: {}
+    data:
+      message: Neko's tracker is below 30% battery power
+      title: Neko
+  - action: notify.mobile_app_tom_gsm_samsung
+    metadata: {}
+    data:
+      message: Neko's tracker is below 30% battery power
+      title: Neko
+  mode: single
+- id: '1776203472841'
+  alias: Motion Kitchen Light
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.pir_motion_sensor_motion_detection
+    from:
+    - 'off'
+    to:
+    - 'on'
+  conditions:
+  - condition: sun
+    before: sunrise
+    after: sunset
+  actions:
+  - sequence:
+    - action: light.turn_on
+      metadata: {}
+      data:
+        brightness_pct: 10
+      target:
+        area_id: kitchen
+    - delay:
+        hours: 0
+        minutes: 2
+        seconds: 0
+        milliseconds: 0
+    - action: light.turn_off
+      metadata: {}
+      data: {}
+      target:
+        area_id: kitchen
+  mode: restart

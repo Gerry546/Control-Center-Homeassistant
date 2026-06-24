@@ -23,3 +23,6 @@ blueprints/automation/homeassistant/motion_light.yaml
 blueprints/script/homeassistant/confirmable_notification.yaml
 blueprints/template/homeassistant/invertes_binary_sensor.yaml
 .HA_VERSION
+zigbee.db*
+.cache
+.ha_run.lock
